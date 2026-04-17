@@ -7,8 +7,6 @@ book_number: "09"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：09 Harness Engineering 视角
-
 ## 本章目标
 
 这一章不再把 Claude Code 当作“功能合集”来读，而是专门回答三个更工程化的问题：
@@ -445,8 +443,8 @@ Claude Code 当前最值得带走的，不是具体 prompt 或某个 hook 名字
 - [第 20 章：message / context assembly 深挖](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
 - [第 21 章：config / state / governance boundaries](/claude-code-architecture/21-config-state-and-governance-boundaries/)
 - [第 22 章：tool system 与 execution boundaries](/claude-code-architecture/22-tool-system-and-execution-boundaries/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

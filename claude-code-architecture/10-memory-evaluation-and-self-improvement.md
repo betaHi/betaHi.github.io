@@ -7,8 +7,6 @@ book_number: "10"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：10 Memory、评测与自我改进
-
 ## 本章目标
 
 这一章专门回答四个更聚焦的问题：
@@ -429,8 +427,8 @@ Claude Code 的启发不是“加一个更聪明的 prompt”，而是：
 - [第 24 章：compact、context collapse 与 recovery boundary](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
 - [第 25 章：tasks、scheduling 与 background execution](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
 - [第 26 章：subagents、parallel exploration 与 isolation](/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

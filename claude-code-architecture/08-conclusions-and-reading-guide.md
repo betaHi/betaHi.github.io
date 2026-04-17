@@ -7,8 +7,6 @@ book_number: "08"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：08 总结与阅读建议
-
 ## 本章目标
 
 这一章不再承担旧版那种“全书简短收尾”的角色，而是作为前半段研究的阶段性收束，回答三个更具体的问题：
@@ -412,9 +410,9 @@ Claude Code 的成熟不只是因为有 QueryEngine / query，而是因为：
 - [第 06 章：state / config / permissions 基础图景](/claude-code-architecture/06-state-config-and-permissions/)
 - [第 13 章：agent loop 深挖](/claude-code-architecture/13-agent-loop-deep-dive/)
 - [第 21 章：governance boundary 正式展开](/claude-code-architecture/21-config-state-and-governance-boundaries/)
-- [第 27 章：总体 Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 28 章：Reading Paths and Index](/claude-code-architecture/28-reading-paths-and-index/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 28 章：阅读路径与索引](/claude-code-architecture/28-reading-paths-and-index/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

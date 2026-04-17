@@ -1,13 +1,11 @@
 ---
 layout: page
-title: "29 Glossary and Core Distinctions"
+title: "29 术语表与核心区分"
 permalink: /claude-code-architecture/29-glossary-and-core-distinctions/
 book_key: glossary-and-core-distinctions
 book_number: "29"
 toc: true
 ---
-
-# Claude Code 仓库架构研究：29 Glossary and Core Distinctions
 
 ## 本章目标
 
@@ -755,8 +753,8 @@ Claude Code 这套术语如果收得好，后续不只是这本研究会受益�
 - [第 24 章：Compact, context collapse, and recovery boundary](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
 - [第 25 章：Tasks, scheduling, and background execution](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
 - [第 26 章：Subagents, parallel exploration, and isolation](/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 28 章：Reading Paths and Index](/claude-code-architecture/28-reading-paths-and-index/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 28 章：阅读路径与索引](/claude-code-architecture/28-reading-paths-and-index/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

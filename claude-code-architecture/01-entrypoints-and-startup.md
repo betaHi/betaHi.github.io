@@ -7,8 +7,6 @@ book_number: "01"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：01 启动入口与启动流程
-
 ## 本章目标
 
 这一章聚焦 Claude Code 的启动链路，回答三个问题：

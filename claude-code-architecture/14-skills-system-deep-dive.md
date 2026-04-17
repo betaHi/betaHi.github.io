@@ -7,8 +7,6 @@ book_number: "14"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：14 Skills 系统深挖
-
 ## 本章目标
 
 这一章专门研究 Claude Code 里的 skills 系统，尽量基于源码而不是预设印象，回答几个更具体的问题：

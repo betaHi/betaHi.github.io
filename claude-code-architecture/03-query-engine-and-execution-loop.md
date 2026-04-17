@@ -7,8 +7,6 @@ book_number: "03"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：03 QueryEngine 与执行循环
-
 ## 本章目标
 
 这一章研究 Claude Code 的核心 runtime，也就是：

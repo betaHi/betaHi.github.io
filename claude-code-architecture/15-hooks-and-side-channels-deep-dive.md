@@ -7,8 +7,6 @@ book_number: "15"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：15 Hooks 与 Side-Channels 深挖
-
 ## 本章目标
 
 这一章聚焦 Claude Code 运行时里的 hooks 与 side-channels，尽量沿着源码链路回答几个更具体的问题：
@@ -441,6 +439,6 @@ post-sampling hooks 偏分析，stop hooks 才有更强 enforcement 能力。这
 - [第 14 章：skills system 深挖](/claude-code-architecture/14-skills-system-deep-dive/)
 - [第 17 章：memory system and persistence](/claude-code-architecture/17-memory-system-and-persistence/)
 - [第 19 章：recovery and error handling](/claude-code-architecture/19-recovery-and-error-handling-deep-dive/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}

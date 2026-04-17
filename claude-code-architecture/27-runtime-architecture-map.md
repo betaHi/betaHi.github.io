@@ -1,13 +1,11 @@
 ---
 layout: page
-title: "27 Runtime Architecture Map"
+title: "27 总体运行时架构图"
 permalink: /claude-code-architecture/27-runtime-architecture-map/
 book_key: runtime-architecture-map
 book_number: "27"
 toc: true
 ---
-
-# Claude Code 仓库架构研究：27 Runtime Architecture Map
 
 ## 本章目标
 
@@ -83,12 +81,12 @@ toc: true
 
 ```mermaid
 flowchart TD
-    IP[Interaction Plane<br/>CLI / UI / SDK stream / protocol boundary]
-    RC[Runtime Core<br/>QueryEngine / query loop / message state machine]
-    EP[Execution Plane<br/>tools / orchestration / tasks / cron / subagents]
-    CP[Context Plane<br/>system prompt / context injection / attachments / memory / compact]
-    GP[Governance Plane<br/>settings / config / permissions / trust / policy]
-    SP[Side-Channel Plane<br/>prefetch / post-sampling hooks / stop hooks / extraction]
+    IP[交互层<br/>CLI / UI / SDK]
+    RC[运行时核心<br/>QueryEngine / query loop]
+    EP[执行层<br/>tools / tasks / subagents]
+    CP[上下文层<br/>prompt / memory / compact]
+    GP[治理层<br/>settings / permissions]
+    SP[旁路层<br/>hooks / prefetch / extraction]
 
     IP --> RC
     RC --> EP

@@ -163,24 +163,24 @@
 - key: runtime-architecture-map
   number: '27'
   source: "27-runtime-architecture-map.md"
-  title: "Claude Code 仓库架构研究：27 Runtime Architecture Map"
+  title: "Claude Code 仓库架构研究：27 总体运行时架构图"
   slug: "27-runtime-architecture-map"
   url: "/claude-code-architecture/27-runtime-architecture-map/"
 - key: reading-paths-and-index
   number: '28'
   source: "28-reading-paths-and-index.md"
-  title: "Claude Code 仓库架构研究：28 Reading Paths and Index"
+  title: "Claude Code 仓库架构研究：28 阅读路径与索引"
   slug: "28-reading-paths-and-index"
   url: "/claude-code-architecture/28-reading-paths-and-index/"
 - key: glossary-and-core-distinctions
   number: '29'
   source: "29-glossary-and-core-distinctions.md"
-  title: "Claude Code 仓库架构研究：29 Glossary and Core Distinctions"
+  title: "Claude Code 仓库架构研究：29 术语表与核心区分"
   slug: "29-glossary-and-core-distinctions"
   url: "/claude-code-architecture/29-glossary-and-core-distinctions/"
 - key: runtime-synthesis-and-design-principles
   number: '30'
   source: "30-runtime-synthesis-and-design-principles.md"
-  title: "Claude Code 仓库架构研究：30 Runtime Synthesis and Design Principles"
+  title: "Claude Code 仓库架构研究：30 运行时综合与设计原则"
   slug: "30-runtime-synthesis-and-design-principles"
   url: "/claude-code-architecture/30-runtime-synthesis-and-design-principles/"

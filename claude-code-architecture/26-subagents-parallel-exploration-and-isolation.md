@@ -7,8 +7,6 @@ book_number: "26"
 toc: true
 ---
 
-## 26 子代理、并行探索与上下文隔离深挖
-
 这一章聚焦 Claude Code 里一个非常具有“agent runtime”味道的能力：
 
 - **subagent**
@@ -48,16 +46,16 @@ toc: true
 
 ```mermaid
 flowchart TD
-    M[主代理] --> D[委托局部任务]
+    M[主代理] --> D[委托任务]
     D --> S1[子代理 A<br/>独立上下文]
     D --> S2[子代理 B<br/>独立上下文]
-    S1 --> W1[可选 worktree isolation]
-    S2 --> W2[可选 worktree isolation]
-    S1 --> R1[结果摘要回传]
-    S2 --> R2[结果摘要回传]
+    S1 --> W1[可选 worktree]
+    S2 --> W2[可选 worktree]
+    S1 --> R1[摘要回传]
+    S2 --> R2[摘要回传]
     R1 --> M
     R2 --> M
-    M --> X[综合理解 / 再委托 / 最终决策]
+    M --> X[综合判断]
 ```
 
 这说明 Claude Code 的 subagent system 不是：
@@ -510,9 +508,9 @@ Explore、Plan、Reviewer 这种角色化设计很实用，因为它能把任务
 
 - [第 22 章：tool system 与执行边界](/claude-code-architecture/22-tool-system-and-execution-boundaries/)
 - [第 25 章：tasks / scheduling / background execution](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}
 

@@ -7,8 +7,6 @@ book_number: "07"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：07 构建开关与产品形态塑造
-
 ## 本章目标
 
 这一章研究一个贯穿全仓库的重要主题：`bun:bundle` 的 `feature(...)`。重点回答：

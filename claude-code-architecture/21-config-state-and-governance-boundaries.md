@@ -7,8 +7,6 @@ book_number: "21"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：21 配置、状态与治理边界深挖
-
 ## 本章目标
 
 这一章聚焦 Claude Code 运行时里经常被混在一起、但源码中其实明确分层的几类东西：
@@ -671,8 +669,8 @@ Claude Code 的 settings source 和 policy source 说明，真正成熟的 agent
 - [第 15 章：hooks 与 side-channels](/claude-code-architecture/15-hooks-and-side-channels-deep-dive/)
 - [第 20 章：message/context assembly](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
 - [第 22 章：tool system 与执行边界](/claude-code-architecture/22-tool-system-and-execution-boundaries/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}
 

@@ -7,8 +7,6 @@ book_number: "05"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：05 集成层与扩展机制
-
 ## 本章目标
 
 这一章研究 Claude Code 为什么不是一个封闭的本地 CLI，而是一套可外接、可扩展、可远程控制的平台。重点包括：

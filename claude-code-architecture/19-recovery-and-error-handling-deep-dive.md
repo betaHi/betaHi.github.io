@@ -7,8 +7,6 @@ book_number: "19"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：19 恢复与错误处理深挖
-
 ## 本章目标
 
 这一章聚焦 Claude Code 运行时里的恢复与错误处理机制，尽量沿着源码链路回答几个更具体的问题：
@@ -628,6 +626,6 @@ Claude Code 把 stop hooks 和 stop failure hooks 分开，是一个非常成熟
 - [第 17 章：memory extraction 只在 stop-path 边界上间接相关](/claude-code-architecture/17-memory-system-and-persistence/)
 - [第 20 章：recovery 如何重塑 messagesForQuery 与上下文装配](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
 - [第 24 章：compact / context collapse / recovery boundary 的进一步专题化分析](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
-- [第 27 章：recovery plane 在总体 Runtime Architecture Map 中的位置](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 27 章：recovery plane 在总体运行时架构图中的位置](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}

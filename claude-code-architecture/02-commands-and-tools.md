@@ -7,8 +7,6 @@ book_number: "02"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：02 命令系统与工具系统
-
 ## 本章目标
 
 这一章分析 Claude Code 中最重要的两套“能力入口”：

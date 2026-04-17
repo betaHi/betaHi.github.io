@@ -1,13 +1,11 @@
 ---
 layout: page
-title: "28 Reading Paths and Index"
+title: "28 阅读路径与索引"
 permalink: /claude-code-architecture/28-reading-paths-and-index/
 book_key: reading-paths-and-index
 book_number: "28"
 toc: true
 ---
-
-# Claude Code 仓库架构研究：28 Reading Paths and Index
 
 ## 本章目标
 
@@ -606,8 +604,8 @@ Claude Code 的治理面其实是整套架构成熟度的关键之一。
 - [第 08 章：阶段性结论与阅读指引](/claude-code-architecture/08-conclusions-and-reading-guide/)
 - [第 09 章：Harness engineering lens](/claude-code-architecture/09-harness-engineering-lens/)
 - [第 12 章：从本仓库继续展开研究的路线](/claude-code-architecture/12-study-roadmap-from-this-repo/)
-- [第 27 章：总体 Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

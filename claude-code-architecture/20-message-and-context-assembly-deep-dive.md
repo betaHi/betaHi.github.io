@@ -7,8 +7,6 @@ book_number: "20"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：20 消息与上下文装配深挖
-
 ## 本章目标
 
 这一章专门研究 Claude Code 里的 message / context assembly，尽量沿着源码链路回答几个更具体的问题：
@@ -59,17 +57,17 @@ toc: true
 
 ```mermaid
 flowchart TD
-    QE[QueryEngine turn 入口] --> SP[systemPrompt 组装]
-    QE --> UC[userContext / systemContext]
-    QE --> IM[内部 message state]
-    IM --> HV[compact-aware history view]
-    HV --> SH[budget / snip / microcompact / collapse shaping]
-    SP --> API[API-bound payload]
+    QE[turn 入口] --> SP[systemPrompt]
+    QE --> UC[上下文输入]
+    QE --> IM[内部消息态]
+    IM --> HV[历史视图]
+    HV --> SH[预算与裁剪]
+    SP --> API[API 载荷]
     UC --> API
     SH --> API
-    API --> N[normalizeMessagesForAPI]
+    API --> N[消息规范化]
     N --> CM[callModel]
-    CM --> OUT[SDK / UI 可见消息流映射]
+    CM --> OUT[对外消息流]
 ```
 
 如果只看 `callModel(...)` 的入口，容易误以为 Claude Code 只是把一堆字符串和消息拼好以后发给 API。
@@ -695,7 +693,7 @@ message assembly 的真正难点从来不只是“怎么拼 prompt”，而是�
 - [第 19 章：recovery / compact / withheld errors 如何改变可发送上下文](/claude-code-architecture/19-recovery-and-error-handling-deep-dive/)
 - [第 23 章：SDK stream / protocol 与内部消息模型的边界](/claude-code-architecture/23-streaming-output-event-protocol-and-sdk-boundary/)
 - [第 24 章：compact boundary / effective history / context collapse](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
-- [第 27 章：Context Plane 在总体 Runtime Architecture Map 中的位置](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 27 章：Context Plane 在总体运行时架构图中的位置](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}
 

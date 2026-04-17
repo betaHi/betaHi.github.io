@@ -7,8 +7,6 @@ book_number: "13"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：13 Agent Loop 深挖
-
 ## 本章目标
 
 这一章不再只做高层总结，而是沿着源码链路，尽量客观地回答：Claude Code 的 agent loop 到底是怎样组织起来的。
@@ -496,6 +494,6 @@ memory extraction、prompt suggestion、skill improvement、task summary 这些�
 - [第 16 章：工具编排与并发执行子系统细节](/claude-code-architecture/16-tool-orchestration-and-concurrency/)
 - [第 19 章：recovery / fallback / stop failure 如何反馈进状态机](/claude-code-architecture/19-recovery-and-error-handling-deep-dive/)
 - [第 20 章：message/context assembly 如何塑造当前 query view](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
-- [第 27 章：agent loop 在总体 Runtime Architecture Map 中的位置](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 27 章：agent loop 在总体运行时架构图中的位置](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}

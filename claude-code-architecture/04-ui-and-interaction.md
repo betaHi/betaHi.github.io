@@ -7,8 +7,6 @@ book_number: "04"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：04 UI 与交互层
-
 ## 本章目标
 
 这一章研究 Claude Code 的前台交互层，也就是终端中用户真正看到和操作的部分。重点包括：

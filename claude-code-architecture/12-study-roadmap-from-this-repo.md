@@ -7,8 +7,6 @@ book_number: "12"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：12 从这个仓库学习 Harness Engineering 的路线图
-
 ## 本章目标
 
 这一章不再只给出一条线性的“看什么文件”清单，而是把整套研究转成更可迁移的学习路线图，重点回答四个问题：
@@ -521,9 +519,9 @@ Claude Code 当前最值得带走的，不是它恰好用了哪种文件格式�
 - [第 24 章：Compact, context collapse, and recovery boundary](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
 - [第 25 章：Tasks, scheduling, and background execution](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
 - [第 26 章：Subagents, parallel exploration, and isolation](/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 28 章：Reading Paths and Index](/claude-code-architecture/28-reading-paths-and-index/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 28 章：阅读路径与索引](/claude-code-architecture/28-reading-paths-and-index/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

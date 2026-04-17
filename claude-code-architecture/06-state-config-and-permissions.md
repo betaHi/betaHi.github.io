@@ -7,8 +7,6 @@ book_number: "06"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：06 状态、配置与权限治理
-
 ## 本章目标
 
 这一章聚焦 Claude Code 中那些“不直接产出功能，但决定系统是否可控”的部分：

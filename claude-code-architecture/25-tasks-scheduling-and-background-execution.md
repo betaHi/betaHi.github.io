@@ -7,8 +7,6 @@ book_number: "25"
 toc: true
 ---
 
-## 25 任务管理、调度与后台执行深挖
-
 这一章聚焦 Claude Code 里另一个很有代表性的运行时能力：
 
 - **任务管理**
@@ -441,8 +439,8 @@ Claude Code 用 output file / task output 的方式，给了一个很实用的�
 - [第 23 章：streaming / protocol / SDK boundary](/claude-code-architecture/23-streaming-output-event-protocol-and-sdk-boundary/)
 - [第 24 章：compact / effective history](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
 - [第 26 章：subagents / parallel exploration / isolation](/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}
 

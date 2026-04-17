@@ -7,8 +7,6 @@ book_number: "17"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：17 Memory 系统与持久化深挖
-
 ## 本章目标
 
 这一章专门研究 Claude Code 里的 memory system，尽量沿着源码链路回答几个更具体的问题：
@@ -500,7 +498,7 @@ typed memory 的四类已经隐含了一个很好的产品判断：长期记忆�
 - [第 15 章：hooks 与 side-channels](/claude-code-architecture/15-hooks-and-side-channels-deep-dive/)
 - [第 20 章：message/context assembly](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
 - [第 24 章：compact / context collapse / recovery boundary](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}

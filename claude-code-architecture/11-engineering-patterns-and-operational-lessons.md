@@ -7,8 +7,6 @@ book_number: "11"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：11 工程模式与工程化经验
-
 ## 本章目标
 
 这一章不再只讲“它是什么”，而专门提炼“我们能学到什么工程经验”。重点是从 Claude Code 这类大型 agent 产品里，抽取可迁移到其他项目的工程模式与操作判断。
@@ -532,8 +530,8 @@ Claude Code 的成熟，并不只来自它支持多少能力，而是来自：
 - [第 22 章：tool system 与 execution boundaries](/claude-code-architecture/22-tool-system-and-execution-boundaries/)
 - [第 25 章：tasks、scheduling 与 background execution](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
 - [第 26 章：subagents、parallel exploration 与 isolation](/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

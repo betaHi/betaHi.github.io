@@ -7,8 +7,6 @@ book_number: "22"
 toc: true
 ---
 
-## 22 工具系统与执行边界深挖
-
 这一章把焦点放到 Claude Code 最核心、也最容易被表面化理解的一层：**tool system**。
 
 如果前几章已经把 query loop、message/context assembly、hooks、memory、config/state/governance 这些外围骨架拆开了，那么这一章要回答的是更靠近 agent “手和脚”的问题：
@@ -487,7 +485,7 @@ Claude Code 这类做法说明，更好的方式是：
 - [第 16 章：tool orchestration 与 concurrency](/claude-code-architecture/16-tool-orchestration-and-concurrency/)
 - [第 21 章：config/state/governance 边界](/claude-code-architecture/21-config-state-and-governance-boundaries/)
 - [第 23 章：streaming / protocol / SDK boundary](/claude-code-architecture/23-streaming-output-event-protocol-and-sdk-boundary/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}

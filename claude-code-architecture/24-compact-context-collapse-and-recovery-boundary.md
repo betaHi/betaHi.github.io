@@ -7,8 +7,6 @@ book_number: "24"
 toc: true
 ---
 
-## 24 会话压缩、上下文收缩与恢复边界深挖
-
 这一章专门研究 Claude Code 长会话里另一个非常核心的运行时子系统：
 
 - **会话压缩**
@@ -447,7 +445,7 @@ Claude Code 的架构脉络说明，这种思路更适合长会话 agent。
 - [第 17 章：memory system and persistence](/claude-code-architecture/17-memory-system-and-persistence/)
 - [第 19 章：recovery and error handling](/claude-code-architecture/19-recovery-and-error-handling-deep-dive/)
 - [第 20 章：message and context assembly](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}

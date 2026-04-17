@@ -32,7 +32,7 @@ permalink: /claude-code-architecture/
 
 - 如果你想先建立整体认识，可以从[总览](/claude-code-architecture/00-overview/)开始。
 - 如果你最关心系统是怎么启动的，可以先看[启动入口与启动流程](/claude-code-architecture/01-entrypoints-and-startup/)。
-- 如果你更想看最后的整体收束，可以把[Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)放到后面再读。
+- 如果你更想看最后的整体收束，可以把[运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)放到后面再读。
 
 ## 全书目录
 
@@ -74,9 +74,9 @@ permalink: /claude-code-architecture/
 
 ### 综合、索引与收束
 
-- [Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [Reading Paths and Index](/claude-code-architecture/28-reading-paths-and-index/)
-- [Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [阅读路径与索引](/claude-code-architecture/28-reading-paths-and-index/)
+- [术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 这样即使不依赖“上一章 / 下一章”，也可以直接从首页目录跳到任意章节。

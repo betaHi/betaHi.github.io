@@ -1,13 +1,11 @@
 ---
 layout: page
-title: "30 Runtime Synthesis and Design Principles"
+title: "30 运行时综合与设计原则"
 permalink: /claude-code-architecture/30-runtime-synthesis-and-design-principles/
 book_key: runtime-synthesis-and-design-principles
 book_number: "30"
 toc: true
 ---
-
-# Claude Code 仓库架构研究：30 Runtime Synthesis and Design Principles
 
 ## 本章目标
 
@@ -626,8 +624,8 @@ memory、compact、tasks、subagents、hooks，这些都不是“附加功能”
 - [第 24 章：Compact, context collapse, and recovery boundary](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
 - [第 25 章：Tasks, scheduling, and background execution](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
 - [第 26 章：Subagents, parallel exploration, and isolation](/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 28 章：Reading Paths and Index](/claude-code-architecture/28-reading-paths-and-index/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 28 章：阅读路径与索引](/claude-code-architecture/28-reading-paths-and-index/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}

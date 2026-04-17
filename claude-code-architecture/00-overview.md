@@ -7,8 +7,6 @@ book_number: "00"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：00 总览
-
 ## 本章目标
 
 这一章作为整套研究的入口，不再只做早期仓库总览，而是回答四个更基础的问题：
@@ -325,7 +323,7 @@ Claude Code = 长期协作型 agent runtime
 
 ## 1. 本章不是总图章
 
-总体 Runtime Architecture Map 已经在第 27 章完成，因此这里不会重复把六个 plane 展开成完整结构图。
+总体运行时架构图已经在第 27 章完成，因此这里不会重复把六个 plane 展开成完整结构图。
 
 ## 2. 本章不是总索引章
 
@@ -422,10 +420,10 @@ Claude Code 最容易被误读的地方，是把它看成：
 - [第 06 章：state / config / permissions 基础图景](/claude-code-architecture/06-state-config-and-permissions/)
 - [第 13 章：agent loop 深挖](/claude-code-architecture/13-agent-loop-deep-dive/)
 - [第 20 章：message/context assembly 深挖](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
-- [第 27 章：总体 Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 28 章：Reading Paths and Index](/claude-code-architecture/28-reading-paths-and-index/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
-- [第 30 章：Runtime Synthesis and Design Principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 28 章：阅读路径与索引](/claude-code-architecture/28-reading-paths-and-index/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}
 {% include mermaid.html %}

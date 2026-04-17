@@ -7,8 +7,6 @@ book_number: "18"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：18 运行时横切结构综合
-
 ## 本章目标
 
 前面几章已经分别下钻了 agent loop、skills、hooks/side-channels、工具编排、memory 等主题。本章不再按子系统逐个回顾，而是尝试回答一个更横切的问题：
@@ -646,7 +644,7 @@ Claude Code runtime
 - [第 16 章：工具编排与并发执行平面](/claude-code-architecture/16-tool-orchestration-and-concurrency/)
 - [第 17 章：memory / persistence / extraction](/claude-code-architecture/17-memory-system-and-persistence/)
 - [第 21 章：config、state 与 governance boundary 的正式展开](/claude-code-architecture/21-config-state-and-governance-boundaries/)
-- [第 27 章：将本章横切结构进一步投影为总体 Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 27 章：将本章横切结构进一步投影为总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
 - [第 30 章：最终 runtime synthesis 与 design principles](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

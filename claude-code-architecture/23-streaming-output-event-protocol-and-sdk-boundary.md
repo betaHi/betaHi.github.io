@@ -7,8 +7,6 @@ book_number: "23"
 toc: true
 ---
 
-## 23 流式输出、事件协议与 SDK 边界深挖
-
 这一章聚焦 Claude Code 里另一个很关键、但很容易被误解成“只是输出格式”的部分：
 
 - **streaming output**
@@ -458,7 +456,7 @@ Claude Code 的整体形态说明，这层桥接非常值钱，尤其当系统�
 - [第 05 章：integrations and extensibility](/claude-code-architecture/05-integrations-and-extensibility/)
 - [第 20 章：message/context assembly](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
 - [第 22 章：tool system 与执行边界](/claude-code-architecture/22-tool-system-and-execution-boundaries/)
-- [第 27 章：Runtime Architecture Map](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：Glossary and Core Distinctions](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}

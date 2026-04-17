@@ -7,8 +7,6 @@ book_number: "16"
 toc: true
 ---
 
-# Claude Code 仓库架构研究：16 工具编排与并发执行
-
 ## 本章目标
 
 这一章只聚焦 Claude Code 里的工具执行子系统，回答下面几个更窄、也更工程化的问题：
@@ -592,6 +590,6 @@ Bash sibling cancellation 的设计说明，一旦进入多工具并发，就需
 - [第 19 章：fallback / abort / missing tool results 的恢复边界](/claude-code-architecture/19-recovery-and-error-handling-deep-dive/)
 - [第 22 章：tool system 的 contract 与 execution boundary](/claude-code-architecture/22-tool-system-and-execution-boundaries/)
 - [第 25 章：background execution 与 task system 的关系](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
-- [第 27 章：Execution Plane 在总体 Runtime Architecture Map 中的位置](/claude-code-architecture/27-runtime-architecture-map/)
+- [第 27 章：Execution Plane 在总体运行时架构图中的位置](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}
