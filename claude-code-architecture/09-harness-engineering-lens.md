@@ -297,3 +297,5 @@ entrypoint / mode dispatch
 - [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

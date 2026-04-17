@@ -543,3 +543,5 @@ flowchart TD
 - [第 27 章：Execution Plane 在总体运行时架构图中的位置](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

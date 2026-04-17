@@ -329,3 +329,5 @@ fast-path 的存在尤其关键：它说明成熟 harness 会把不同运行形�
 第二条经验是尽早承认“模式分流”是架构问题。只要一个 agent 系统未来会同时支持交互模式、后台模式、远程模式或桥接模式，就应该像这里一样把 mode dispatch 放在入口层，而不是在主程序里到处分支。
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

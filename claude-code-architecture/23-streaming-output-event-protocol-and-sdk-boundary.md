@@ -413,3 +413,5 @@ CLI、桌面端、SDK、外部自动化系统，它们的需求并不完全一�
 - [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

@@ -511,3 +511,5 @@ typed memory 的四类已经隐含了一个很好的产品判断：长期记忆�
 - [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

@@ -321,3 +321,5 @@ Claude Code 的治理层相当厚实，主要体现在：
 第二条经验是配置系统要按长期演化来设计。只要系统会升级、会进入受管环境、会支持多来源 settings，就需要 schema、migration、source priority 和 policy overrides；否则产品化后很快会失控。
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

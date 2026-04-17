@@ -411,3 +411,5 @@ Claude Code 明显已经把这个问题工程化了：压缩必须配套 boundar
 - [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

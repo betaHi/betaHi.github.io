@@ -30,20 +30,16 @@ toc: true
 ```mermaid
 stateDiagram-v2
     [*] --> 正常推进
-    正常推进 --> prompt_too_long: 上下文溢出
-    正常推进 --> max_output_tokens: 输出截断
-    正常推进 --> streaming_fail: 流式中断
-    正常推进 --> context_collapse: 历史过大
-    正常推进 --> interrupt: 用户中断
+    正常推进 --> prompt_too_long
+    正常推进 --> max_output_tokens
+    正常推进 --> streaming_fail
+    正常推进 --> context_collapse
     prompt_too_long --> 正常推进: reactive-compact 重试
     max_output_tokens --> 正常推进: 注入 recovery-message
-    streaming_fail --> 正常推进: fallback-model
+    streaming_fail --> 正常推进: fallback-model 重试
     context_collapse --> 正常推进: drain & retry
-    正常推进 --> success
-    max_output_tokens --> error_max_turns
-    正常推进 --> error_max_budget
-    streaming_fail --> error_during_execution
-    interrupt --> [*]
+    正常推进 --> 终止
+    终止 --> [*]
 ```
 
 ## 一、先给出总体判断
@@ -619,3 +615,5 @@ Claude Code 把 stop hooks 和 stop failure hooks 分开，是一个非常成熟
 - [第 27 章：recovery plane 在总体运行时架构图中的位置](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

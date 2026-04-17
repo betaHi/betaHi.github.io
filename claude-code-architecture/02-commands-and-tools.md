@@ -376,3 +376,5 @@ Claude Code 通过 **commands + tools** 这套双接口架构，把“人类操�
 第二条经验是权限最好前置到“暴露阶段”而不是只在“调用阶段”拒绝。Claude Code 通过 blanket deny 在模型看到工具前就裁掉它们，减少无效试探、降低 token 浪费，也让行为更稳定。
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

@@ -25,10 +25,11 @@ toc: true
 
 ```mermaid
 flowchart TD
-    A[定义层 schema] --> B[权限层 canUseTool]
-    B --> C[执行层 sandbox]
-    C --> D[结果层 normalize]
-    D --> E[回填 context]
+    A[tool 定义层 schema] --> B[registry 聚合当前可用工具]
+    B --> C[model exposure 暴露面]
+    C --> D[execution orchestration 调度]
+    D --> E[governance permission / mode / trust]
+    E --> F[tool_result 回填 message state]
 ```
 
 ---
@@ -426,3 +427,5 @@ Claude Code 当前更像在坚持：
 - [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

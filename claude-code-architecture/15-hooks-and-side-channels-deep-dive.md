@@ -449,3 +449,5 @@ post-sampling hooks 偏分析，stop hooks 才有更强 enforcement 能力。这
 - [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

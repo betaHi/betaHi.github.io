@@ -299,3 +299,5 @@ Claude Code 选择从 skill 文件开始，是一个很对的路线。因为：
 - [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

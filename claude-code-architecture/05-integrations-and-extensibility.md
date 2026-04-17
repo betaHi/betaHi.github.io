@@ -352,3 +352,5 @@ Claude Code 的扩展层不是“加几个插件点”这么简单，而是形�
 第二条经验是外部集成必须有厚接入层。`src/services/mcp/client.ts` 对 auth、transport、session expiry、output truncation 的处理说明：真正产品化时，最难的往往不是“接上协议”，而是把外部不确定性工程化地兜住。
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}

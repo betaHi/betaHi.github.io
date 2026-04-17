@@ -492,3 +492,5 @@ hook 会把：
 - [第 29 章：skill / command / tool / plugin / MCP 等术语边界](/claude-code-architecture/29-glossary-and-core-distinctions/)
 
 {% include claude-code-architecture-nav.html %}
+
+{% include mermaid.html %}
