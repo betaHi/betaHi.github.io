@@ -1,0 +1,32 @@
+{% assign chapters = site.data.claude_code_architecture %}
+{% assign current_url = page.permalink | default: page.url %}
+{% assign current = chapters | where: 'url', current_url | first %}
+
+{% if current %}
+  {% assign current_index = nil %}
+  {% for chapter in chapters %}
+    {% if chapter.url == current.url %}
+      {% assign current_index = forloop.index0 %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% assign previous_index = current_index | minus: 1 %}
+  {% assign next_index = current_index | plus: 1 %}
+  {% assign previous = chapters[previous_index] %}
+  {% assign next = chapters[next_index] %}
+
+  <nav class="d-flex flex-column gap-2 mt-5 pt-3 border-top" aria-label="Claude Code Architecture chapter navigation">
+    <a href="{{ '/claude-code-architecture/' | relative_url }}">返回书籍首页</a>
+
+    <div class="d-flex flex-column gap-1">
+      {% if previous %}
+        <a href="{{ previous.url | relative_url }}">上一章：{{ previous.number }} {{ previous.title }}</a>
+      {% endif %}
+
+      {% if next %}
+        <a href="{{ next.url | relative_url }}">下一章：{{ next.number }} {{ next.title }}</a>
+      {% endif %}
+    </div>
+  </nav>
+{% endif %}
