@@ -33,14 +33,16 @@ flowchart LR
     A["bin/claude"] --> B["cli.js 解包"]
     B --> C["main() 启动"]
     C --> D{"模式分派"}
-    D --> E["interactive"]
-    D --> F["print"]
-    D --> G["headless"]
-    D --> H["SDK"]
+    D --> E["终端 REPL"]
+    D --> F["bridge / remote"]
+    D --> G["daemon / worker"]
+    D --> H["background sessions"]
+    D --> J["MCP server"]
     E --> I["QueryEngine 构造"]
     F --> I
     G --> I
     H --> I
+    J --> I
 ```
 
 ## 一、轻量入口：`src/entrypoints/cli.tsx`

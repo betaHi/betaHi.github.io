@@ -40,11 +40,13 @@ Claude Code 明显采用了“双接口架构”：
 
 ```mermaid
 flowchart TD
-    A["slash 命令"] --> E["全部注入"]
-    B["内建工具"] --> E
-    C["MCP 工具"] --> E
-    D["skills"] --> E
-    E --> F["模型可用工具集"]
+    U["用户"] --> A["slash 命令"]
+    A --> RT["runtime"]
+    D["skills"] --> A
+    B["内建工具"] --> T["模型可用工具集"]
+    C["MCP 工具"] --> T
+    T --> M["模型调用"]
+    M --> RT
 ```
 
 ## 一、命令系统：`src/commands.ts`

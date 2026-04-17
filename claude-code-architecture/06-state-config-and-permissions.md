@@ -28,15 +28,15 @@ Claude Code 并不是“模型 + 工具”直接裸连，而是在中间放了�
 
 ```mermaid
 flowchart LR
-    S1["settings"] --> M["合并策略"]
-    S2["project"] --> M
-    S3["user"] --> M
-    S4["enterprise"] --> M
+    S1["user settings"] --> M["source merge"]
+    S2["project settings"] --> M
+    S3["policy / managed"] --> M
+    S4["inline"] --> M
+    S5["remote managed"] --> M
     M --> C["canUseTool"]
     C --> A["allow"]
     C --> Q["ask"]
     C --> D["deny"]
-    D --> L["记录 denial"]
 ```
 
 ## 一、为什么状态是两层的

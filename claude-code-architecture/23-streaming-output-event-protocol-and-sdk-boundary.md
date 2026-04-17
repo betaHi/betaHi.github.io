@@ -28,9 +28,10 @@ toc: true
 
 ```mermaid
 flowchart LR
-    A[SDK 原始 stream] --> B[query.ts 解析]
-    B --> C[内部 event]
-    C --> D[消费者 event stream]
+    A[内部 query runtime] --> B[streaming emission]
+    B --> C[SDK 协议映射]
+    S[system/init] --> C
+    C --> D[外部消费者]
 ```
 
 ---
