@@ -78,5 +78,3 @@ permalink: /claude-code-architecture/
 - [阅读路径与索引](/claude-code-architecture/28-reading-paths-and-index/)
 - [术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
 - [运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
-
-这样即使不依赖“上一章 / 下一章”，也可以直接从首页目录跳到任意章节。

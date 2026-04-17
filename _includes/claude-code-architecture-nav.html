@@ -16,17 +16,98 @@
   {% assign previous = chapters[previous_index] %}
   {% assign next = chapters[next_index] %}
 
-  <nav class="d-flex flex-column gap-2 mt-5 pt-3 border-top" aria-label="Claude Code Architecture chapter navigation">
-    <a href="{{ '/claude-code-architecture/' | relative_url }}">返回书籍首页</a>
+  <aside class="cc-arch-sidebar" aria-label="Claude Code 架构研究全书目录">
+    <div class="cc-arch-sidebar-inner">
+      <div class="cc-arch-sidebar-head">
+        <a href="{{ '/claude-code-architecture/' | relative_url }}">← 返回书籍首页</a>
+      </div>
+      <h3 class="cc-arch-sidebar-title">全书目录</h3>
+      <ol class="cc-arch-toc">
+        {% for chapter in chapters %}
+          {% assign display_title = chapter.title | remove: 'Claude Code 仓库架构研究：' %}
+          <li class="{% if chapter.url == current.url %}is-active{% endif %}">
+            {% if chapter.url == current.url %}
+              <span>{{ display_title }}</span>
+            {% else %}
+              <a href="{{ chapter.url | relative_url }}">{{ display_title }}</a>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </aside>
 
+  <nav class="d-flex flex-column gap-2 mt-5 pt-3 border-top" aria-label="Claude Code 架构研究章节导航">
+    <a href="{{ '/claude-code-architecture/' | relative_url }}">返回书籍首页</a>
     <div class="d-flex flex-column gap-1">
       {% if previous %}
-        <a href="{{ previous.url | relative_url }}">上一章：{{ previous.number }} {{ previous.title }}</a>
+        <a href="{{ previous.url | relative_url }}">上一章：{{ previous.title | remove: 'Claude Code 仓库架构研究：' }}</a>
       {% endif %}
-
       {% if next %}
-        <a href="{{ next.url | relative_url }}">下一章：{{ next.number }} {{ next.title }}</a>
+        <a href="{{ next.url | relative_url }}">下一章：{{ next.title | remove: 'Claude Code 仓库架构研究：' }}</a>
       {% endif %}
     </div>
   </nav>
+
+  <style>
+    .cc-arch-sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 260px;
+      height: 100vh;
+      overflow-y: auto;
+      padding: 4.5rem 1rem 2rem 1.25rem;
+      background: var(--main-bg, #ffffff);
+      border-right: 1px solid var(--main-border-color, rgba(0, 0, 0, 0.08));
+      z-index: 50;
+      box-sizing: border-box;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+    .cc-arch-sidebar-head {
+      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+    }
+    .cc-arch-sidebar-head a {
+      color: var(--text-muted-color, #8e8e8e);
+      text-decoration: none;
+    }
+    .cc-arch-sidebar-head a:hover { text-decoration: underline; }
+    .cc-arch-sidebar-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin: 0 0 0.5rem 0;
+      color: var(--heading-color, inherit);
+    }
+    .cc-arch-toc {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    .cc-arch-toc li {
+      margin: 0.3rem 0;
+    }
+    .cc-arch-toc a {
+      color: var(--text-color, inherit);
+      text-decoration: none;
+      display: block;
+      padding: 0.1rem 0.25rem;
+      border-radius: 3px;
+    }
+    .cc-arch-toc a:hover {
+      background: var(--card-hovor-bg, rgba(0, 0, 0, 0.04));
+    }
+    .cc-arch-toc li.is-active > span {
+      display: block;
+      padding: 0.1rem 0.25rem;
+      font-weight: 600;
+      color: var(--link-color, #2a7ae2);
+      border-left: 2px solid var(--link-color, #2a7ae2);
+      padding-left: 0.5rem;
+    }
+    @media (max-width: 1199px) {
+      .cc-arch-sidebar { display: none; }
+    }
+  </style>
 {% endif %}
