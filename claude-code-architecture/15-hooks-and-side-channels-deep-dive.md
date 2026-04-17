@@ -20,14 +20,15 @@ toc: true
 
 ```mermaid
 flowchart TD
-  A[turn 主循环] --> B[pre-sampling<br/>同步阻塞]
-  B --> C[调用模型 / sampling]
-  C --> D[post-sampling<br/>fire-and-forget]
+  A[turn 主循环] --> B[pre-sampling 同步]
+  B --> C[调用模型]
+  C --> D[post-sampling 异步]
   D --> E{继续 turn?}
   E -- 是 --> A
-  E -- 否 --> F[stop hook<br/>同步收口]
-  F --> G[teammate / task-completed<br/>fire-and-forget]
-  F --> H[memory-extract / auto-dream<br/>fire-and-forget]
+  E -- 否 --> F[stop hook 同步]
+  F --> G[teammate 异步]
+  F --> H[memory-extract 异步]
+  F --> I[auto-dream 异步]
 ```
 
 ## 一、先给出总体判断

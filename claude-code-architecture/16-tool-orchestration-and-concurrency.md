@@ -29,9 +29,13 @@ flowchart TD
   A[tool_use blocks] --> B[partitionToolCalls]
   B --> C[并发安全组]
   B --> D[非并发安全 串行]
-  C --> E[StreamingToolExecutor<br/>queued → executing → completed → yielded]
+  C --> E[StreamingToolExecutor]
   D --> E
-  E --> F{Bash error?}
+  E --> E1[queued]
+  E1 --> E2[executing]
+  E2 --> E3[completed]
+  E3 --> E4[yielded]
+  E4 --> F{Bash error?}
   F -- 是 --> G[取消 sibling 任务]
   F -- 否 --> H[tool_result 汇总]
   G --> H

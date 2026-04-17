@@ -19,11 +19,11 @@ toc: true
 
 ```mermaid
 flowchart LR
-  A[启动时注册<br/>local/plugin/bundled] --> B[prefetch<br/>relevant skills]
+  A[启动时注册] --> B[prefetch 相关 skill]
   B --> C[turn 内发现]
   C --> D[attachment 注入]
   D --> E[模型使用]
-  E --> F[post-sampling<br/>skillImprovement 反馈]
+  E --> F[post-sampling 反馈]
 ```
 
 ## 一、先给出总体判断

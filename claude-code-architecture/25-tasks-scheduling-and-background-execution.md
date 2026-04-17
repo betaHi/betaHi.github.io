@@ -45,12 +45,12 @@ toc: true
 
 ```mermaid
 flowchart TD
-    T[task object<br/>TaskCreate / Update / List] --> B[background Bash / agent]
-    T --> C[cron / scheduled trigger]
+    T[task object] --> B[background Bash / agent]
+    T --> C[cron / scheduled]
     C --> B
-    B --> O[output file / task output]
-    O --> N[completion notification / later retrieval]
-    N --> U[用户对话 / UI / 后续协作]
+    B --> O[output file]
+    O --> N[completion 通知]
+    N --> U[用户对话 / UI]
 ```
 
 这意味着 Claude Code 的任务系统不是：

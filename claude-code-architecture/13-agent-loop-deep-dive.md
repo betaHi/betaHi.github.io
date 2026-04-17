@@ -27,9 +27,9 @@ flowchart TD
   E --> F[tool_result 回注]
   F --> B
   D -- 否 --> G[turn 结束]
-  C -. prompt-too-long .-> H[compact retry]
+  C -. 溢出 .-> H[compact retry]
   H --> C
-  C -. max-output-tokens<br/>fallback-model .-> I[escalate / retry]
+  C -. 截断/失败 .-> I[escalate / fallback]
   I --> C
 ```
 

@@ -39,15 +39,15 @@ toc: true
 
 ```mermaid
 flowchart TD
-    CFG[持久配置层<br/>GlobalConfig / ProjectConfig] --> SET[settings source 合并层]
-    POL[policy / managed settings] --> SET
-    SET --> BST[bootstrap runtime state]
-    SET --> PERM[permission / governance execution]
-    BST --> APP[AppState / UI reactive store]
+    CFG[持久配置层] --> SET[settings 合并层]
+    POL[managed policy] --> SET
+    SET --> BST[runtime state]
+    SET --> PERM[permission 执行]
+    BST --> APP[AppState / UI store]
     BST --> PERM
-    APP --> UI[UI / approval / trust flows]
+    APP --> UI[approval / trust]
     PERM --> UI
-    PERM --> TOOL[tool allow / deny / ask decisions]
+    PERM --> TOOL[tool allow / deny / ask]
 ```
 
 这五层最重要的架构意义，不是“代码分文件放了”，而是：

@@ -26,8 +26,11 @@ flowchart TD
     C --> C1["telemetry"]
     C --> C2["observability"]
     C --> C3["experimentation"]
-    C --> D["受控写回路<br/>skillImprovement / extractMemories"]
-    D --> E["user 确认"]
+    C --> D["受控写回路"]
+    D --> D1["skillImprovement"]
+    D --> D2["extractMemories"]
+    D1 --> E["user 确认"]
+    D2 --> E
     E --> F["合入"]
 ```
 

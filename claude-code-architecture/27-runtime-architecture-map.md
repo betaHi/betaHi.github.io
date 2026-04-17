@@ -81,12 +81,12 @@ toc: true
 
 ```mermaid
 flowchart TD
-    IP[交互层<br/>CLI / UI / SDK]
-    RC[运行时核心<br/>QueryEngine / query loop]
-    EP[执行层<br/>tools / tasks / subagents]
-    CP[上下文层<br/>prompt / memory / compact]
-    GP[治理层<br/>settings / permissions]
-    SP[旁路层<br/>hooks / prefetch / extraction]
+    IP[交互层 CLI / UI / SDK]
+    RC[运行时核心 QueryEngine]
+    EP[执行层 tools / tasks / subagents]
+    CP[上下文层 prompt / memory / compact]
+    GP[治理层 settings / permissions]
+    SP[旁路层 hooks / prefetch / extraction]
 
     IP --> RC
     RC --> EP

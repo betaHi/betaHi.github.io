@@ -47,8 +47,8 @@ toc: true
 ```mermaid
 flowchart TD
     M[主代理] --> D[委托任务]
-    D --> S1[子代理 A<br/>独立上下文]
-    D --> S2[子代理 B<br/>独立上下文]
+    D --> S1[子代理 A]
+    D --> S2[子代理 B]
     S1 --> W1[可选 worktree]
     S2 --> W2[可选 worktree]
     S1 --> R1[摘要回传]

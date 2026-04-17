@@ -28,11 +28,9 @@ toc: true
 
 ```mermaid
 flowchart LR
-    A[Anthropic SDK<br/>原始 stream events] --> B[query.ts 解析<br/>assistant / tool_use / stop_reason / usage]
-    B --> C[内部 event<br/>message state 推进]
-    C -. 内部 .-> C
-    C --> D[SDK / headless<br/>消费者 event stream]
-    D -. 外露 .-> D
+    A[SDK 原始 stream] --> B[query.ts 解析]
+    B --> C[内部 event]
+    C --> D[消费者 event stream]
 ```
 
 ---

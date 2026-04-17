@@ -181,16 +181,16 @@ Claude Code 的 agent 内核采用了明显的“两级执行模型”：
 ```mermaid
 flowchart TD
     U[用户 / REPL / SDK / Remote] --> QE[QueryEngine.submitMessage]
-    QE --> A[装配 turn 输入<br/>messages / systemPrompt / userContext / systemContext]
+    QE --> A[装配 turn 输入]
     A --> Q[query loop]
-    Q --> M[调用模型并流式接收 assistant 输出]
-    M --> D{是否出现 tool_use?}
-    D -- 否 --> T{是否终止?}
-    D -- 是 --> X[执行 tools / orchestration]
+    Q --> M[调用模型流式输出]
+    M --> D{tool_use?}
+    D -- 否 --> T{终止?}
+    D -- 是 --> X[执行 tools]
     X --> R[写回 tool_result]
     R --> Q
     T -- 继续 --> Q
-    T -- 结束 --> O[返回 events / messages / terminal result]
+    T -- 结束 --> O[返回 events / 终态]
 ```
 
 也可以把 `query.ts` 概括成下面这条主线：

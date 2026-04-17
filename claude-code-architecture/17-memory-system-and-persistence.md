@@ -30,7 +30,7 @@ flowchart LR
     P[project]
     G[managed]
   end
-  M -->|读路径| R1[prefetch<br/>relevant memory]
+  M -->|读路径| R1[prefetch 相关记忆]
   R1 --> R2[attachment 注入]
   R2 --> T[turn 执行]
   T -->|写路径| W1[extractMemories 建议]

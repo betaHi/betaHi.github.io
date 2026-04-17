@@ -25,10 +25,10 @@ toc: true
 
 ```mermaid
 flowchart TD
-    A[定义层<br/>tool schema / isConcurrencySafe] --> B[权限层<br/>canUseTool 裁决]
-    B --> C[执行层<br/>runtime sandbox / streaming]
-    C --> D[结果层<br/>normalize / attach to messages]
-    D --> E[回填 assistant context]
+    A[定义层 schema] --> B[权限层 canUseTool]
+    B --> C[执行层 sandbox]
+    C --> D[结果层 normalize]
+    D --> E[回填 context]
 ```
 
 ---
