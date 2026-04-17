@@ -30,12 +30,16 @@ toc: true
 
 ```mermaid
 flowchart TD
-    A[getMessagesAfterCompactBoundary] --> B[applyToolResultBudget]
-    B --> C[snipCompactIfNeeded]
-    C --> D[microcompact]
-    D --> E[contextCollapse]
-    E --> F[autocompact]
-    F --> G[messagesForQuery]
+    H[完整历史] --> B[compact boundary]
+    B --> C1[snip]
+    B --> C2[microcompact]
+    B --> C3[contextCollapse]
+    B --> C4[autocompact]
+    C1 --> E[getMessagesAfterCompactBoundary]
+    C2 --> E
+    C3 --> E
+    C4 --> E
+    E --> G[messagesForQuery]
 ```
 
 ---

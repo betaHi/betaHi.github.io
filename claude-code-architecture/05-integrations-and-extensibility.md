@@ -32,12 +32,11 @@ Claude Code 的扩展与集成层非常厚，至少由五类机制组成：
 
 ```mermaid
 flowchart LR
-    A["MCP clients"] --> M["挂载点"]
-    B["hooks"] --> M
-    C["plugins"] --> M
-    D["subagents"] --> M
-    E["custom skills"] --> M
-    M --> R["runtime"]
+    A["MCP"] --> R["runtime"]
+    B["LSP"] --> R
+    C["skills"] --> R
+    D["plugins"] --> R
+    E["bridge / remote"] --> R
 ```
 
 ## 一、MCP：外部能力接入总线

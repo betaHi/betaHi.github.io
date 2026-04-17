@@ -22,13 +22,14 @@ toc: true
 flowchart TD
   A[turn 主循环] --> B[pre-sampling 同步]
   B --> C[调用模型]
-  C --> D[post-sampling 异步]
+  C --> D[post-sampling 旁路]
   D --> E{继续 turn?}
   E -- 是 --> A
-  E -- 否 --> F[stop hook 同步]
-  F --> G[teammate 异步]
-  F --> H[memory-extract 异步]
-  F --> I[auto-dream 异步]
+  E -- 否 --> F[turn 尾部收口 handleStopHooks]
+  F --> F1[stop hooks 执行]
+  F --> F2[extract memories]
+  F --> F3[auto dream]
+  F --> F4[teammate / task completed]
 ```
 
 ## 一、先给出总体判断
