@@ -1,434 +1,286 @@
 ---
 layout: page
-title: "10 Memory、评测与自我改进"
+title: "10 评测基础设施与受控自改进"
 permalink: /claude-code-architecture/10-memory-evaluation-and-self-improvement/
 book_key: memory-evaluation-and-self-improvement
 book_number: "10"
 toc: true
 ---
 
-## 本章目标
+## 这一章要回答什么
 
-这一章专门回答四个更聚焦的问题：
+当谈到 agent 的「自我改进」时，业界的讨论很容易滑向两个极端：要么是「它会自动进化」的修辞，要么是「它只是 prompt 而已」的贬低。两种说法都不准确，也都不 actionable。
 
-1. Claude Code 里的 memory 到底是怎样分层的？
-2. 评测能力在这套系统里是以什么形态存在的？
-3. 所谓“自我改进”在这里到底有哪些明确证据，哪些又不该过度解读？
-4. 这些能力为什么更应该被理解成长期协作 runtime 的 side-channel / governance / context engineering 基础设施？
+这一章从 Claude Code 的源码出发，试图给出一个更工程化的中间立场：
 
-因此，本章的职责不是把 memory、compact、hooks、eval 全部重新定义一遍，而是：
+1. **Claude Code 里到底有哪些「改进」能力？**（按证据列）
+2. **这些能力为什么不是「自治进化」？**（按边界列）
+3. **真正值得学的是什么？**（按可迁移判断列）
 
-- 把长期协作 agent 中最容易混淆的 memory / evaluation / self-improvement 问题放回运行时边界里；
-- 说明 Claude Code 值得学习的不是“会不会自动进化”，而是“如何做受控自改进”。
+关于 memory 的结构化分层本身——durable memory、session memory、extraction——会在 [第 17 章](/claude-code-architecture/17-memory-system-and-persistence/) 完整展开。本章**只在 memory 作为「受控改进的载体」这个角度上**涉及它。
+
+---
 
 ## 一、先给出总体判断
 
-基于这次调研，我会把结论压成三层：
+基于源码，Claude Code 的「自改进」能力可以分成三层：
 
-### 1. 明确存在的机制
+### 层 1：执行层自修复（可信度高）
 
-源码里能明确看到：
+- `query.ts` 里的 `max_output_tokens` 恢复
+- auto compact / reactive compact
+- tool result budget 裁剪
+- stop hook 介入主路径
 
-- 持久 memory 机制（`memdir` / `MEMORY.md` / typed memory）
-- session memory 机制（当前会话摘要与压缩辅助）
-- 自动 durable memory 提取机制（stop hook 后 forked agent 提取 memories）
-- post-sampling hooks 与 stop hooks（主输出之后的附加分析插槽）
-- skill improvement（对项目 skill 的改进建议与受限自动应用实验）
-- compact / recovery / retry / budget（执行层面的自修复）
-- analytics / telemetry / feature gates（让系统可评估、可 rollout）
+这一层不依赖任何 LLM 自治能力，只依赖 runtime 自己的状态机。**它之所以可信，是因为它不问模型「你该怎么办」，而是由 harness 自己决定。**
 
-### 2. 明确不存在“失控式自进化”证据
+### 层 2：认知连续性修复（中等可信度）
 
-这份源码里没有明显证据表明 Claude Code 在做一种完全自动、闭环、自主重写自身核心代码的大规模自我进化。
+- session memory 通过 forked subagent 提取会话要点
+- durable memory 通过 post-turn stop hook + forked agent 做 extraction
+- compact 后的 effective history 维持会话可继续
 
-更准确的说法是：
+这一层依赖 LLM 做摘要和提炼，但是**在受控边界内**——forked agent、共享 prompt cache、极窄工具集、只能写入特定路径。
 
-> 它具备很多 **局部自我改进与自我维护机制**，但这些机制都被严格限制在特定边界内。
+### 层 3：受控自改进（最接近「自进化」，但边界非常窄）
 
-### 3. 真正值得学的是“受控自改进”
+- `src/utils/hooks/skillImprovement.ts`：检测最近几轮消息中用户对 skill 的偏好/纠正，抽取潜在 skill update，在特定路径下自动改写 skill 文件
+- 严格 gate、批量阈值（每 `TURN_BATCH_SIZE` 轮才分析一次）
+- 目标只限 project skill 这一类边界清楚的对象
+- 不改系统代码、不改其它 agent 行为
 
-Claude Code 更像是在做：
+**关键观察**：即使是 Claude Code 里「最像自改进」的 skillImprovement，也是一个**受限、可解释、可关闭**的机制。它改的是 skill 文件，不是任意系统代码。
 
-- 自动提炼记忆
-- 自动维护 session summary
-- 自动检测 skill 改进点
-- 自动 compact / 恢复 / retry
-- 自动记录 telemetry 以支撑后续评估
+### 不存在的能力（重要）
 
-这是一种非常工程化的“渐进式自改进”，而不是失控式自治。
+源码里**没有**证据表明 Claude Code 做下面这些事：
 
-## 二、为什么这一章要把 memory、评测、自改进放在一起看
+- 不会自动重写自己的核心代码
+- 不会自动拓宽工具权限
+- 不会自动修改 managed settings 或 policy
+- 不会自动绕开 permission pipeline
 
-表面上看，这三件事像是不同主题：
+如果你读到的任何「Claude Code 会自己进化」的描述超出了前三层的边界，那要么是误读，要么是对未来能力的猜测。
 
-- memory 像上下文问题
-- evaluation 像评测问题
-- self-improvement 像智能增强问题
+---
 
-但从长期协作 runtime 的角度看，它们其实共享同一个核心问题：
+## 二、评测基础设施：没有它，改进就是盲改
 
-> 系统怎样在不污染主任务路径的前提下，持续维持认知连续性、观测自身表现，并对局部行为做受控改进。
+Claude Code 的受控自改进之所以成立，关键在于它建立在一套**足够扎实的评测基础设施**上。这一节拆解这套基础设施。
 
-所以这三者在 Claude Code 里并不是孤立 feature，而是共同落在：
+### 1. Analytics 是「能被早期使用的」基础设施
 
-- Context Plane
-- Side-Channel Plane
-- Governance Plane
+**源码证据**：`src/services/analytics/index.ts`
 
-的交叉地带。
+这个文件的设计有几个值得学的细节：
 
-## 三、Memory 在这个仓库里至少有三层
+- **低依赖**：公共 API 极薄，避免 import cycle
+- **Sink 延迟 attach**：启动时 sink 可能还没准备好，但事件不会丢
+- **早期事件排队**：sink attach 前产生的事件进入队列
+- **Metadata 强类型约束**：避免把敏感路径、代码片段误记进遥测
 
-## 1. 持久 memory：`src/memdir/memdir.ts`
+**工程意义**：如果 observability 层做成了「业务代码硬依赖」，它就只能在系统完全启动后才能用。Claude Code 把它做成「基础设施」——这意味着从启动第一秒就能用，也意味着可以随时替换 sink（开发/测试/生产不同）。
 
-这是最显式的一层。
+### 2. Compact 自带可测性
 
-从 `memdir.ts` 可见：
+**源码证据**：`src/services/compact/autoCompact.ts`
 
-- memory 以文件目录形式存在
-- 入口文件是 `MEMORY.md`
-- `MEMORY.md` 只是索引，不直接存内容
-- 每条 memory 都应写入独立文件，并带 frontmatter
-- memory 被限制为四类：`user / feedback / project / reference`
-- 明确禁止把可从代码推导出的内容随便存成 memory
+值得注意的工程细节：
 
-这里最有价值的工程点是：
+- 明确的 token threshold（warning / error / blocking）
+- Consecutive failure circuit breaker
+- Env override 方便测试
+- 与 reactive compact / context collapse 联动
 
-### durable memory 被设计成“结构化知识库”，不是聊天缓存
+**工程意义**：这个模块不是「写死逻辑」，而是**可调、可试验、可观察**。这让 compact 的效果能被系统性评估，而不是靠感觉。
 
-它要求：
+### 3. Feature gates + dynamic config = 渐进实验平台
 
-- 有类型
-- 有描述
-- 有索引
-- 有内容与索引分离
-- 有明确的“什么不该存”边界
+**源码证据**：仓库里大量使用 feature gate 和 dynamic config 控制功能启用。
 
-这其实是一种很成熟的 memory engineering 思路。
-
-## 2. Session memory：`src/services/SessionMemory/sessionMemory.ts`
-
-这层 memory 不同于持久 memory，它更像 **当前会话的工作记忆 / 摘要记忆**。
-
-从代码看：
-
-- 它在后台定期维护一个 markdown 文件
-- 触发条件与 token 数、tool call 数有关
-- 它通过 forked subagent 提取当前会话的重要信息
-- 会在 auto compact 与 session memory compact 中被使用
-
-这里体现了一个非常关键的设计：
-
-> 长会话里，不能只靠原始 transcript 维持认知，必须生成中间层记忆。
-
-## 3. 自动 durable memory 提取：`src/services/extractMemories/extractMemories.ts`
-
-这个模块更进一步：它会在 query loop 正常完成后，由 stop hook 路径异步触发 durable memory 抽取。
-
-源码里能明确看到：
-
-- 它运行在完整 query loop 结束后
-- 采用 forked agent 模式
-- 共享父 prompt cache
-- 只允许极受限的工具集
-- Edit/Write 只能写到 auto-memory 路径
-- Bash 只允许只读命令
-
-这非常值得学习，因为它说明 Claude Code 的 memory 提取不是“主 agent 顺手干一下”，而是：
-
-- 放到 side-channel
-- 用权限严格受限的子 agent 完成
-- 避免干扰主线程任务
-
-这就是很典型的 harness engineering 手法。
-
-## 四、memory 的工程价值，不只是“记住东西”
-
-## 1. memory 是上下文工程的一部分
-
-`loadMemoryPrompt()` 与 system prompt 构造路径说明：memory 最终会参与 prompt 构建。也就是说，它不是外部数据库，而是 **context assembly 的组成部分**。
-
-## 2. memory 是 token 预算治理的一部分
-
-session memory 和 compaction 之间有明显耦合，说明 memory 还承担：
-
-- 帮助长会话维持连续性
-- 在上下文窗口有限时保留关键信息
-
-## 3. memory 是用户体验个性化的一部分
-
-typed memory 中的 `user / feedback / project / reference` 四类，天然对应：
-
-- 用户画像
-- 协作偏好
-- 当前项目背景
-- 外部资源线索
-
-这说明 memory 不是单纯摘要，而是产品层的长期个性化基础设施。
-
-## 五、有没有自我评测？有，但更像“评估基础设施”而不是单一 eval 模块
-
-## 1. Analytics 与 telemetry 是评测基础设施
-
-`src/services/analytics/index.ts` 很值得注意：
-
-- 它被刻意设计成低依赖，避免 import cycle
-- sink 可以晚 attach
-- 早期事件会先入队
-- metadata 被强约束，避免意外记录代码/路径等敏感信息
-
-这意味着团队不是“先做功能，后面再想监控”，而是把观测能力当成基础设施。
-
-对于 harness engineering 来说，这非常关键，因为没有稳定遥测，就没有可靠评测。
-
-## 2. compact / recovery 自带可测性
-
-`src/services/compact/autoCompact.ts` 中有很多工程化细节：
-
-- 明确的 token threshold
-- warning / error / blocking limit
-- consecutive failure circuit breaker
-- env override 方便测试
-- 与 reactive compact / context collapse 的联动
-
-这说明这套系统本身就是可调、可试验、可观察的，而不是写死逻辑。
-
-## 3. feature gates + dynamic config = 渐进实验平台
-
-无论 session memory、skill improvement，还是其他特性，都大量依赖 gate 与 config。
-
-这说明很多能力是：
+session memory、skill improvement 等特性都是这种模式：
 
 - 先 gated
-- 再 rollout
-- 再根据观测逐步调整
+- 再 rollout（部分用户、部分场景）
+- 根据观测逐步调整
 
-这本质上就是 agent 系统里的线上实验基础设施。
+**工程意义**：这本质上是 agent 系统里的**线上实验基础设施**。没有它，任何新特性要么不敢发布，要么发布后无法回滚。
 
-## 六、有没有自我修复？有，而且是 runtime 级的
+### 4. 评测基础设施的三个层次
 
-## 1. query loop 的恢复机制
+综合起来，Claude Code 的评测基础设施分三层：
 
-在 `src/query.ts` 里可以看到：
+| 层 | 作用 | 关键模块 |
+|---|---|---|
+| **遥测层** | 收集运行时事件 | `analytics/index.ts` |
+| **可观察性层** | 让关键机制自带指标 | `autoCompact.ts`、`stopHooks.ts` |
+| **实验层** | Gate + rollout + config | Feature gates、dynamic config |
 
-- `max_output_tokens` 恢复
-- auto compact / reactive compact
-- tool result budget 管理
-- stop hook 介入
+**缺一不可**。没有遥测层就没有数据，没有可观察性就没有信号，没有实验层就没有安全推进的手段。
 
-这些都属于执行层面的自修复。
+---
 
-这里最重要的判断是：
+## 三、受控自改进的机制拆解
 
-> 它不是“模型自己想到修复”，而是 harness 保证可以恢复。
+现在回到层 3——skillImprovement 这个最接近「自进化」的机制。把它拆开看，每个设计点都在解决一个具体问题。
 
-这是非常关键的 distinction：
+**源码证据**：`src/utils/hooks/skillImprovement.ts` + `src/utils/hooks/postSamplingHooks.ts`
 
-- LLM 层的临场修复不稳定
-- runtime 层的恢复机制更可信、更可测
+### 1. 它通过 side-channel 触发，不侵入主 turn
 
-## 2. session memory / durable memory 也是一种认知修复
+skillImprovement 挂在 post-sampling hook 上——模型输出完成后触发，**fire-and-forget**。它的失败不会让主 turn 失败。
 
-长上下文系统最常见的问题之一是“忘”。
+这解决的问题是：**分析工作不能阻塞任务推进**。如果自改进机制会让用户感知到卡顿，它就不可接受。
 
-Claude Code 的 session memory、extract memories、compaction 都是在修这个问题：
+### 2. 它有批量阈值，不是每轮都跑
 
-- 通过摘要维持连续性
-- 通过 durable memory 保留长期偏好/背景
-- 通过 compact 后边界保持会话可继续
+```
+每 TURN_BATCH_SIZE 轮才分析一次
+```
 
-这是一种“认知连续性修复”。
+这解决的问题是：**自改进是低频任务，不值得每轮付出开销**。它需要足够的样本才能给出有意义的改进建议。
 
-## 七、有没有“自我进化”？谨慎地说：有局部进化机制
+### 3. 它的写入面极窄
 
-## 1. `src/utils/hooks/skillImprovement.ts` 是最明显的证据
+只能写入 project skill 文件路径下的 skill 定义。不能：
 
-这个文件特别值得看，因为它已经不是单纯记录，而是在做：
+- 改系统代码
+- 改其它 skill 目录（user / managed / plugin）
+- 改 memory、settings、permissions
 
-- 检测最近几轮消息中用户对 skill 的偏好/纠正
-- 抽取潜在 skill update
-- 把建议写入 app state
-- 在某路径下自动改写 skill 文件
+这解决的问题是：**自改进的爆炸半径必须小**。如果失控，影响范围必须能控制在一个可回滚的小区域。
 
-这非常接近“系统根据交互反馈改进自己的工作流定义”。
+### 4. 它受 gate 控制，可以完全关闭
 
-### 但它仍然是严格受限的
+这解决的问题是：**自改进功能必须能一键关闭**。这是所有非确定性功能的底线。
 
-- 只在特定 gate 下开启
-- 目标是 project skill 这种边界明确的对象
-- 有批量阈值（每 `TURN_BATCH_SIZE` 轮才分析一次）
-- 改的是 skill file，不是任意系统代码
+### 5. 它的结果最终由用户验证
 
-这是一种 **局部、可控、可解释的自进化**。
+改写发生在 project skill 文件里，用户下次使用这个 skill 时会自然感受到差异。如果改写不合适，用户可以直接编辑文件或删除改动。
 
-## 2. stop hook / post-sampling hook 架构给自改进留下了插槽
+这解决的问题是：**自改进不是闭环自治，它的最后一环是人**。
 
-从 `src/utils/hooks/postSamplingHooks.ts` 和 `src/query/stopHooks.ts` 看：
+### 综合：这是「受控自改进」的一个完整样本
 
-- 模型输出后可以跑额外分析
-- turn 结束后可以跑额外 side effects
-- 这些都拿得到完整上下文对象
+把上面五点放在一起，skillImprovement 是一个相当完整的受控自改进样本：
 
-这意味着系统架构上已经为“反思型子流程”留好了插槽。
+```text
+触发方式：post-sampling side-channel（fire-and-forget）
+触发频率：批量阈值（低频）
+写入面：  project skill 文件（最窄）
+控制面：  feature gate（可关闭）
+验证面：  用户自然感知 + 可编辑
+```
 
-这类插槽未来可以承载：
+这五个维度**全部受控**，才叫受控自改进。
 
-- 记忆提取
-- 总结提炼
-- skill 改进
-- 评分类器
-- 失败原因分析
+---
 
-也就是说，Claude Code 当前已展现出**自改进架构能力**，即便不是所有能力都 fully on。
+## 四、可迁移的工程判断
 
-## 八、从这套设计能学到什么
+如果你要在自己的系统里做类似能力，下面是从 Claude Code 能稳妥带走的判断。
 
-## 1. 把“反思”放到 side-channel，不要污染主线程
+### 1. 不要把自改进理解成无限自治
 
-memory extraction、session memory、skill improvement 都不是主任务里硬塞进去的，而是：
-
-- post-turn 触发
-- forked agent 执行
-- 工具权限缩小
-- 尽量复用 prompt cache
-
-这是非常成熟的工程化方式。
-
-## 2. memory、summary、compact、eval 不能混成一团
-
-至少要区分：
-
-- prompt 内即时上下文
-- session memory
-- durable memory
-- compact / context collapse
-- telemetry / evaluation
-- UI / runtime state
-
-如果把这些混在一起，系统会很快失控。
-
-## 3. 自我改进只能在狭窄边界内先做起来
-
-Claude Code 没有直接“让 agent 自动改任何东西”，而是先从：
-
-- skill definition
-- session summary
-- durable memory
-- compact / recovery 策略
-
-这些边界清楚的对象开始。这是非常对的路线。
-
-## 4. 没有 telemetry，就谈不上 agent 改进
-
-无论是 feature gate 还是 compact config，背后都默认依赖足够的可观测性。没有这个基础，所谓自改进很容易变成盲改。
-
-## 九、本章与后续章节的关系
-
-为了避免术语和职责混乱，需要明确本章边界。
-
-## 1. 本章不是 memory 总索引章
-
-memory、compact、context distinction 的更完整区分，应以后面的：
-
-- `17-memory-system-and-persistence.md`
-- `24-compact-context-collapse-and-recovery-boundary.md`
-- `29-glossary-and-core-distinctions.md`
-
-为主。
-
-## 2. 本章不是 hooks / side-channel 深挖章
-
-更细的 hook 与 side-channel 运行时分析，应以后面的：
-
-- `15-hooks-and-side-channels-deep-dive.md`
-- `19-recovery-and-error-handling-deep-dive.md`
-
-为主。
-
-## 3. 本章不是最终综合章
-
-长期协作 runtime 中 memory / evaluation / self-improvement 的最终综合理解，应以后面的：
-
-- `27-runtime-architecture-map.md`
-- `30-runtime-synthesis-and-design-principles.md`
-
-为主。
-
-## 十、Harness 视角
-
-从 harness engineering 的角度看，这一章最重要的价值，不是证明 Claude Code “很智能”，而是训练下面这种判断：
-
-- 哪些认知工作应该留在主路径
-- 哪些应该移到受控 side-channel
-- 哪些写回面必须收窄
-- 哪些改进必须依赖遥测与 gate
-- memory、evaluation、self-improvement 为什么首先是边界工程问题
-
-Claude Code 在这些问题上给出的答案，比很多泛泛而谈的“agent 自进化”讨论更有工程价值。
-
-## 十一、工程化启发
-
-这一章最值得带走的工程经验是：
-
-## 1. 不要把 memory 理解成聊天记录增强
-
-真正成熟的 memory 系统，一定会区分 durable、session、summary、retrieval、compact 等不同层次。
-
-## 2. 不要把自我改进理解成无限自治
-
-更现实也更安全的做法，是先做：
+更现实也更安全的做法：
 
 - 有边界的写回面
 - 有 gate 的启用方式
 - 有观测支撑的渐进 rollout
 - 有 side-channel 隔离的反思流程
 
-## 3. 长期协作能力本质上是基础设施问题
+任何一个维度没有做到位，自改进都会从「功能」变成「风险」。
 
-Claude Code 的启发不是“加一个更聪明的 prompt”，而是：
+### 2. 没有评测基础设施，就不要做自改进
 
-- 建立 memory infra
-- 建立 evaluation infra
-- 建立 recovery infra
-- 建立 controlled improvement infra
+顺序是：
 
-## 本章小结
+```text
+先做 telemetry 基础设施
+再做 feature gate 基础设施
+再做可观察性的核心机制
+最后才加自改进功能
+```
 
-如果把这一章压缩成一句话，可以说：
+跳过前三步直接做自改进，本质上是盲改。
 
-> Claude Code 在 memory、评测与自我改进上最值得学习的，不是某种神奇自治能力，而是它如何把认知连续性、运行时观测、局部改进与受限写回做成一套可治理、可隔离、可渐进演化的长期协作基础设施。
+### 3. 把「反思」放到 side-channel，不要污染主路径
 
-如果你接下来想继续顺着这条线读，最稳妥的下一步通常是：
+memory extraction、session memory、skill improvement 都遵循这个模式：
 
-- 想看 memory 本体：去 `17 / 20 / 24`
-- 想看 hooks / side-channel：去 `15 / 19`
-- 想看 tasks / subagents / 长时间工作：去 `25 / 26`
-- 想回到总图与综合：去 `27 / 30`
+- 主 turn 完成后触发
+- 用 forked agent 执行
+- 工具权限收窄
+- 尽量复用 prompt cache
+
+这是非常成熟的工程化方式，也几乎是受控自改进的唯一正确切入点。
+
+### 4. Memory、summary、compact、eval 不能混成一团
+
+这是长期协作系统里最危险的认知混乱之一。至少要区分：
+
+- prompt 内即时上下文
+- session memory（工作记忆）
+- durable memory（长期背景）
+- compact / context collapse
+- telemetry / evaluation
+- UI / runtime state
+
+混在一起，系统会很快失控。详细分层见 [第 17 章](/claude-code-architecture/17-memory-system-and-persistence/) 和 [第 24 章](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)。
+
+### 5. 自改进的第一个目标应该是「工作流定义」，不是系统代码
+
+Claude Code 选择从 skill 文件开始，是一个很对的路线。因为：
+
+- skill 定义是纯文本、边界清楚
+- 改错了不会破坏系统功能
+- 用户可以直接编辑回来
+- 效果可以在下次使用时立刻看到
+
+如果你要做类似能力，建议也从**边界清楚、爆炸半径小、可由用户验证**的对象开始，而不是上来就做「让系统自己改自己」。
+
+---
+
+## 五、一个克制的结论
+
+关于「agent 自改进」的讨论，外界经常过度浪漫化。Claude Code 给出的答案，反而更像一个成熟工程团队会给的答案：
+
+> **不追求「系统自己进化成什么」，只追求「系统能基于自己的使用情况，在受控边界内做出小幅、可观测、可回滚的改进」。**
+
+这不是一个让人兴奋的目标。但它是一个**能真正交付产品**的目标。
+
+从这个角度看，Claude Code 的 memory + evaluation + self-improvement，不是某种「让 agent 更聪明」的机制，而是**让 agent 能长期运行、长期可观测、长期可改进**的基础设施。
+
+这恰好也是这本书对 harness engineering 的核心理解。
+
+---
+
+## 继续阅读
+
+- 想看 memory 的完整分层：[第 17 章 Memory 系统与持久化](/claude-code-architecture/17-memory-system-and-persistence/)
+- 想看 compact 的恢复边界：[第 24 章 会话压缩、上下文收缩与恢复边界深挖](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
+- 想看 hooks / side-channels 的完整 taxonomy：[第 15 章 Hooks 与 Side-Channels 深挖](/claude-code-architecture/15-hooks-and-side-channels-deep-dive/)
+- 想看 harness 工程的整体观察框架：[第 09 章 Harness 工程经验综合](/claude-code-architecture/09-harness-engineering-lens/)
 
 ## 源码证据索引
 
-- `src/memdir/memdir.ts` — durable memory 目录、typed memory 与索引边界
-- `src/services/extractMemories/extractMemories.ts` — post-turn durable memory 提取 side-channel
-- `src/services/SessionMemory/sessionMemory.ts` — session memory 与工作记忆层
+- `src/memdir/memdir.ts` — durable memory 目录与 typed memory
+- `src/services/extractMemories/extractMemories.ts` — post-turn durable memory 提取
+- `src/services/SessionMemory/sessionMemory.ts` — session memory 与工作记忆
 - `src/services/compact/sessionMemoryCompact.ts` — session memory compact 路径
-- `src/services/compact/autoCompact.ts` — 自动 compact、阈值与恢复边界
+- `src/services/compact/autoCompact.ts` — 自动 compact 与阈值
 - `src/utils/hooks/postSamplingHooks.ts` — post-sampling side-channel 插槽
 - `src/query/stopHooks.ts` — stop hook 执行面
-- `src/utils/hooks/skillImprovement.ts` — 项目 skill 改进检测与受限自动改写
+- `src/utils/hooks/skillImprovement.ts` — 受控 skill 自改进
 - `src/services/analytics/index.ts` — telemetry / observability 基础设施
 - `src/query.ts` — runtime recovery、budget、stop-hook integration
 
 ## 相关章节
 
-- [第 15 章：hooks 与 side-channels 深挖](/claude-code-architecture/15-hooks-and-side-channels-deep-dive/)
-- [第 17 章：memory system and persistence](/claude-code-architecture/17-memory-system-and-persistence/)
-- [第 19 章：recovery 与错误处理深挖](/claude-code-architecture/19-recovery-and-error-handling-deep-dive/)
-- [第 20 章：message / context assembly 深挖](/claude-code-architecture/20-message-and-context-assembly-deep-dive/)
-- [第 24 章：compact、context collapse 与 recovery boundary](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
-- [第 25 章：tasks、scheduling 与 background execution](/claude-code-architecture/25-tasks-scheduling-and-background-execution/)
-- [第 26 章：subagents、parallel exploration 与 isolation](/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/)
-- [第 27 章：总体运行时架构图](/claude-code-architecture/27-runtime-architecture-map/)
-- [第 29 章：术语表与核心区分](/claude-code-architecture/29-glossary-and-core-distinctions/)
+- [第 09 章：Harness 工程经验综合](/claude-code-architecture/09-harness-engineering-lens/)
+- [第 15 章：Hooks 与 Side-Channels 深挖](/claude-code-architecture/15-hooks-and-side-channels-deep-dive/)
+- [第 17 章：Memory 系统与持久化](/claude-code-architecture/17-memory-system-and-persistence/)
+- [第 24 章：会话压缩、上下文收缩与恢复边界深挖](/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/)
 - [第 30 章：运行时综合与设计原则](/claude-code-architecture/30-runtime-synthesis-and-design-principles/)
 
 {% include claude-code-architecture-nav.html %}

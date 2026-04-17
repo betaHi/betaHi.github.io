@@ -1,186 +1,215 @@
+- key: preface
+  number: ''
+  source: "preface.md"
+  title: "前言"
+  slug: "preface"
+  url: "/claude-code-architecture/preface/"
+  part: "preface"
+
 - key: overview
   number: '00'
   source: "00-overview.md"
-  title: "Claude Code 仓库架构研究：00 总览"
+  title: "00 总览"
   slug: "00-overview"
   url: "/claude-code-architecture/00-overview/"
+  part: "1"
 - key: entrypoints-and-startup
   number: '01'
   source: "01-entrypoints-and-startup.md"
-  title: "Claude Code 仓库架构研究：01 启动入口与启动流程"
+  title: "01 启动入口与启动流程"
   slug: "01-entrypoints-and-startup"
   url: "/claude-code-architecture/01-entrypoints-and-startup/"
+  part: "1"
 - key: commands-and-tools
   number: '02'
   source: "02-commands-and-tools.md"
-  title: "Claude Code 仓库架构研究：02 命令系统与工具系统"
+  title: "02 命令系统与工具系统"
   slug: "02-commands-and-tools"
   url: "/claude-code-architecture/02-commands-and-tools/"
+  part: "1"
 - key: query-engine-and-execution-loop
   number: '03'
   source: "03-query-engine-and-execution-loop.md"
-  title: "Claude Code 仓库架构研究：03 QueryEngine 与执行循环"
+  title: "03 QueryEngine 与执行循环"
   slug: "03-query-engine-and-execution-loop"
   url: "/claude-code-architecture/03-query-engine-and-execution-loop/"
+  part: "1"
 - key: ui-and-interaction
   number: '04'
   source: "04-ui-and-interaction.md"
-  title: "Claude Code 仓库架构研究：04 UI 与交互层"
+  title: "04 UI 与交互层"
   slug: "04-ui-and-interaction"
   url: "/claude-code-architecture/04-ui-and-interaction/"
+  part: "1"
 - key: integrations-and-extensibility
   number: '05'
   source: "05-integrations-and-extensibility.md"
-  title: "Claude Code 仓库架构研究：05 集成层与扩展机制"
+  title: "05 集成层与扩展机制"
   slug: "05-integrations-and-extensibility"
   url: "/claude-code-architecture/05-integrations-and-extensibility/"
+  part: "1"
 - key: state-config-and-permissions
   number: '06'
   source: "06-state-config-and-permissions.md"
-  title: "Claude Code 仓库架构研究：06 状态、配置与权限治理"
+  title: "06 状态、配置与权限治理"
   slug: "06-state-config-and-permissions"
   url: "/claude-code-architecture/06-state-config-and-permissions/"
+  part: "1"
 - key: build-flags-and-product-shaping
   number: '07'
   source: "07-build-flags-and-product-shaping.md"
-  title: "Claude Code 仓库架构研究：07 构建开关与产品形态塑造"
+  title: "07 构建开关与产品形态塑造"
   slug: "07-build-flags-and-product-shaping"
   url: "/claude-code-architecture/07-build-flags-and-product-shaping/"
+  part: "1"
+
 - key: conclusions-and-reading-guide
   number: '08'
   source: "08-conclusions-and-reading-guide.md"
-  title: "Claude Code 仓库架构研究：08 总结与阅读建议"
+  title: "08 从产品结构到工程视角：过渡章"
   slug: "08-conclusions-and-reading-guide"
   url: "/claude-code-architecture/08-conclusions-and-reading-guide/"
+  part: "2"
 - key: harness-engineering-lens
   number: '09'
   source: "09-harness-engineering-lens.md"
-  title: "Claude Code 仓库架构研究：09 Harness Engineering 视角"
+  title: "09 Harness 工程经验综合"
   slug: "09-harness-engineering-lens"
   url: "/claude-code-architecture/09-harness-engineering-lens/"
+  part: "2"
 - key: memory-evaluation-and-self-improvement
   number: '10'
   source: "10-memory-evaluation-and-self-improvement.md"
-  title: "Claude Code 仓库架构研究：10 Memory、评测与自我改进"
+  title: "10 评测基础设施与受控自改进"
   slug: "10-memory-evaluation-and-self-improvement"
   url: "/claude-code-architecture/10-memory-evaluation-and-self-improvement/"
-- key: engineering-patterns-and-operational-lessons
-  number: '11'
-  source: "11-engineering-patterns-and-operational-lessons.md"
-  title: "Claude Code 仓库架构研究：11 工程模式与工程化经验"
-  slug: "11-engineering-patterns-and-operational-lessons"
-  url: "/claude-code-architecture/11-engineering-patterns-and-operational-lessons/"
-- key: study-roadmap-from-this-repo
-  number: '12'
-  source: "12-study-roadmap-from-this-repo.md"
-  title: "Claude Code 仓库架构研究：12 从这个仓库学习 Harness Engineering 的路线图"
-  slug: "12-study-roadmap-from-this-repo"
-  url: "/claude-code-architecture/12-study-roadmap-from-this-repo/"
+  part: "2"
+
 - key: agent-loop-deep-dive
   number: '13'
   source: "13-agent-loop-deep-dive.md"
-  title: "Claude Code 仓库架构研究：13 Agent Loop 深挖"
+  title: "13 Agent Loop 深挖"
   slug: "13-agent-loop-deep-dive"
   url: "/claude-code-architecture/13-agent-loop-deep-dive/"
+  part: "3"
 - key: skills-system-deep-dive
   number: '14'
   source: "14-skills-system-deep-dive.md"
-  title: "Claude Code 仓库架构研究：14 Skills 系统深挖"
+  title: "14 Skills 系统深挖"
   slug: "14-skills-system-deep-dive"
   url: "/claude-code-architecture/14-skills-system-deep-dive/"
+  part: "3"
 - key: hooks-and-side-channels-deep-dive
   number: '15'
   source: "15-hooks-and-side-channels-deep-dive.md"
-  title: "Claude Code 仓库架构研究：15 Hooks 与 Side-Channels 深挖"
+  title: "15 Hooks 与 Side-Channels 深挖"
   slug: "15-hooks-and-side-channels-deep-dive"
   url: "/claude-code-architecture/15-hooks-and-side-channels-deep-dive/"
+  part: "3"
 - key: tool-orchestration-and-concurrency
   number: '16'
   source: "16-tool-orchestration-and-concurrency.md"
-  title: "Claude Code 仓库架构研究：16 工具编排与并发执行"
+  title: "16 工具编排与并发执行"
   slug: "16-tool-orchestration-and-concurrency"
   url: "/claude-code-architecture/16-tool-orchestration-and-concurrency/"
+  part: "3"
 - key: memory-system-and-persistence
   number: '17'
   source: "17-memory-system-and-persistence.md"
-  title: "Claude Code 仓库架构研究：17 Memory 系统与持久化深挖"
+  title: "17 Memory 系统与持久化"
   slug: "17-memory-system-and-persistence"
   url: "/claude-code-architecture/17-memory-system-and-persistence/"
-- key: runtime-cross-cutting-synthesis
-  number: '18'
-  source: "18-runtime-cross-cutting-synthesis.md"
-  title: "Claude Code 仓库架构研究：18 运行时横切结构综合"
-  slug: "18-runtime-cross-cutting-synthesis"
-  url: "/claude-code-architecture/18-runtime-cross-cutting-synthesis/"
+  part: "3"
 - key: recovery-and-error-handling-deep-dive
   number: '19'
   source: "19-recovery-and-error-handling-deep-dive.md"
-  title: "Claude Code 仓库架构研究：19 恢复与错误处理深挖"
+  title: "19 恢复与错误处理深挖"
   slug: "19-recovery-and-error-handling-deep-dive"
   url: "/claude-code-architecture/19-recovery-and-error-handling-deep-dive/"
+  part: "3"
 - key: message-and-context-assembly-deep-dive
   number: '20'
   source: "20-message-and-context-assembly-deep-dive.md"
-  title: "Claude Code 仓库架构研究：20 消息与上下文装配深挖"
+  title: "20 消息与上下文装配深挖"
   slug: "20-message-and-context-assembly-deep-dive"
   url: "/claude-code-architecture/20-message-and-context-assembly-deep-dive/"
+  part: "3"
 - key: config-state-and-governance-boundaries
   number: '21'
   source: "21-config-state-and-governance-boundaries.md"
-  title: "Claude Code 仓库架构研究：21 配置、状态与治理边界深挖"
+  title: "21 配置、状态与治理边界深挖"
   slug: "21-config-state-and-governance-boundaries"
   url: "/claude-code-architecture/21-config-state-and-governance-boundaries/"
+  part: "3"
 - key: tool-system-and-execution-boundaries
   number: '22'
   source: "22-tool-system-and-execution-boundaries.md"
-  title: "Claude Code 仓库架构研究：22 工具系统与执行边界深挖"
+  title: "22 工具系统与执行边界深挖"
   slug: "22-tool-system-and-execution-boundaries"
   url: "/claude-code-architecture/22-tool-system-and-execution-boundaries/"
+  part: "3"
 - key: streaming-output-event-protocol-and-sdk-boundary
   number: '23'
   source: "23-streaming-output-event-protocol-and-sdk-boundary.md"
-  title: "Claude Code 仓库架构研究：23 流式输出、事件协议与 SDK 边界深挖"
+  title: "23 流式输出、事件协议与 SDK 边界深挖"
   slug: "23-streaming-output-event-protocol-and-sdk-boundary"
   url: "/claude-code-architecture/23-streaming-output-event-protocol-and-sdk-boundary/"
+  part: "3"
 - key: compact-context-collapse-and-recovery-boundary
   number: '24'
   source: "24-compact-context-collapse-and-recovery-boundary.md"
-  title: "Claude Code 仓库架构研究：24 会话压缩、上下文收缩与恢复边界深挖"
+  title: "24 会话压缩、上下文收缩与恢复边界深挖"
   slug: "24-compact-context-collapse-and-recovery-boundary"
   url: "/claude-code-architecture/24-compact-context-collapse-and-recovery-boundary/"
+  part: "3"
 - key: tasks-scheduling-and-background-execution
   number: '25'
   source: "25-tasks-scheduling-and-background-execution.md"
-  title: "Claude Code 仓库架构研究：25 任务管理、调度与后台执行深挖"
+  title: "25 任务管理、调度与后台执行深挖"
   slug: "25-tasks-scheduling-and-background-execution"
   url: "/claude-code-architecture/25-tasks-scheduling-and-background-execution/"
+  part: "3"
 - key: subagents-parallel-exploration-and-isolation
   number: '26'
   source: "26-subagents-parallel-exploration-and-isolation.md"
-  title: "Claude Code 仓库架构研究：26 子代理、并行探索与上下文隔离深挖"
+  title: "26 子代理、并行探索与上下文隔离深挖"
   slug: "26-subagents-parallel-exploration-and-isolation"
   url: "/claude-code-architecture/26-subagents-parallel-exploration-and-isolation/"
+  part: "3"
+
 - key: runtime-architecture-map
   number: '27'
   source: "27-runtime-architecture-map.md"
-  title: "Claude Code 仓库架构研究：27 总体运行时架构图"
+  title: "27 总体运行时架构图"
   slug: "27-runtime-architecture-map"
   url: "/claude-code-architecture/27-runtime-architecture-map/"
+  part: "4"
 - key: reading-paths-and-index
   number: '28'
   source: "28-reading-paths-and-index.md"
-  title: "Claude Code 仓库架构研究：28 阅读路径与索引"
+  title: "28 阅读路径与索引"
   slug: "28-reading-paths-and-index"
   url: "/claude-code-architecture/28-reading-paths-and-index/"
+  part: "4"
 - key: glossary-and-core-distinctions
   number: '29'
   source: "29-glossary-and-core-distinctions.md"
-  title: "Claude Code 仓库架构研究：29 术语表与核心区分"
+  title: "29 术语表与核心区分"
   slug: "29-glossary-and-core-distinctions"
   url: "/claude-code-architecture/29-glossary-and-core-distinctions/"
+  part: "4"
 - key: runtime-synthesis-and-design-principles
   number: '30'
   source: "30-runtime-synthesis-and-design-principles.md"
-  title: "Claude Code 仓库架构研究：30 运行时综合与设计原则"
+  title: "30 运行时综合与设计原则"
   slug: "30-runtime-synthesis-and-design-principles"
   url: "/claude-code-architecture/30-runtime-synthesis-and-design-principles/"
+  part: "4"
+
+- key: appendix-source-index
+  number: 'A'
+  source: "appendix-a-source-index.md"
+  title: "附录 A 源码证据索引（按符号）"
+  slug: "appendix-a-source-index"
+  url: "/claude-code-architecture/appendix-a-source-index/"
+  part: "appendix"

@@ -22,18 +22,37 @@
         <a href="{{ '/claude-code-architecture/' | relative_url }}">← 返回书籍首页</a>
       </div>
       <h3 class="cc-arch-sidebar-title">全书目录</h3>
-      <ol class="cc-arch-toc">
-        {% for chapter in chapters %}
-          {% assign display_title = chapter.title | remove: 'Claude Code 仓库架构研究：' %}
-          <li class="{% if chapter.url == current.url %}is-active{% endif %}">
-            {% if chapter.url == current.url %}
-              <span>{{ display_title }}</span>
-            {% else %}
-              <a href="{{ chapter.url | relative_url }}">{{ display_title }}</a>
+
+      {% assign parts = "preface|1|2|3|4|appendix" | split: "|" %}
+      {% assign part_titles = "preface=前言|1=第一篇 · 基础轮廓|2=第二篇 · 工程视角|3=第三篇 · 运行时深挖|4=第四篇 · 综合与收束|appendix=附录" | split: "|" %}
+
+      {% for part_id in parts %}
+        {% assign part_chapters = chapters | where: 'part', part_id %}
+        {% if part_chapters.size > 0 %}
+          {% assign part_label = "" %}
+          {% for pt in part_titles %}
+            {% assign kv = pt | split: "=" %}
+            {% if kv[0] == part_id %}
+              {% assign part_label = kv[1] %}
             {% endif %}
-          </li>
-        {% endfor %}
-      </ol>
+          {% endfor %}
+          <div class="cc-arch-part">
+            <div class="cc-arch-part-label">{{ part_label }}</div>
+            <ul class="cc-arch-toc">
+              {% for chapter in part_chapters %}
+                {% assign display_title = chapter.title %}
+                <li>
+                  {% if chapter.url == current.url %}
+                    <span class="cc-arch-active">{{ display_title }}</span>
+                  {% else %}
+                    <a href="{{ chapter.url | relative_url }}">{{ display_title }}</a>
+                  {% endif %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+      {% endfor %}
     </div>
   </aside>
 
@@ -41,10 +60,10 @@
     <a href="{{ '/claude-code-architecture/' | relative_url }}">返回书籍首页</a>
     <div class="d-flex flex-column gap-1">
       {% if previous %}
-        <a href="{{ previous.url | relative_url }}">上一章：{{ previous.title | remove: 'Claude Code 仓库架构研究：' }}</a>
+        <a href="{{ previous.url | relative_url }}">上一章：{{ previous.title }}</a>
       {% endif %}
       {% if next %}
-        <a href="{{ next.url | relative_url }}">下一章：{{ next.title | remove: 'Claude Code 仓库架构研究：' }}</a>
+        <a href="{{ next.url | relative_url }}">下一章：{{ next.title }}</a>
       {% endif %}
     </div>
   </nav>
@@ -54,7 +73,7 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 260px;
+      width: 280px;
       height: 100vh;
       overflow-y: auto;
       padding: 4.5rem 1rem 2rem 1.25rem;
@@ -75,10 +94,23 @@
     }
     .cc-arch-sidebar-head a:hover { text-decoration: underline; }
     .cc-arch-sidebar-title {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      margin: 0 0 0.5rem 0;
+      margin: 0 0 0.85rem 0;
       color: var(--heading-color, inherit);
+    }
+    .cc-arch-part {
+      margin-bottom: 1.1rem;
+    }
+    .cc-arch-part-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: 0.02em;
+      color: var(--text-muted-color, #8e8e8e);
+      margin: 0 0 0.35rem 0;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px dashed var(--main-border-color, rgba(0, 0, 0, 0.1));
     }
     .cc-arch-toc {
       list-style: none;
@@ -86,7 +118,7 @@
       margin: 0;
     }
     .cc-arch-toc li {
-      margin: 0.3rem 0;
+      margin: 0.2rem 0;
     }
     .cc-arch-toc a {
       color: var(--text-color, inherit);
@@ -98,13 +130,12 @@
     .cc-arch-toc a:hover {
       background: var(--card-hovor-bg, rgba(0, 0, 0, 0.04));
     }
-    .cc-arch-toc li.is-active > span {
+    .cc-arch-active {
       display: block;
-      padding: 0.1rem 0.25rem;
+      padding: 0.1rem 0.25rem 0.1rem 0.5rem;
       font-weight: 600;
       color: var(--link-color, #2a7ae2);
       border-left: 2px solid var(--link-color, #2a7ae2);
-      padding-left: 0.5rem;
     }
     @media (max-width: 1199px) {
       .cc-arch-sidebar { display: none; }
