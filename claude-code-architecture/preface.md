@@ -13,10 +13,10 @@ toc: true
 
 这本书**不是**：
 
-- 不是 Claude Code 的使用手册；
-- 不是一份完整的 Claude Code 源码导读；
-- 不是 agent 入门教程；
-- 不是一份「怎么写出更好的 prompt」的经验集。
+- Claude Code 的使用手册；
+- 一份完整的 Claude Code 源码导读；
+- agent 入门教程；
+- 一份「怎么写出更好的 prompt」的经验集。
 
 如果你找的是其中任何一样，这里都不适合你。
 
