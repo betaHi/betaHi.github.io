@@ -18,6 +18,21 @@ toc: true
 3. compact、budget、hooks、memory、queued commands 这些机制是怎样挂进 loop 的？
 4. 从源码能得出的最稳妥判断是什么？
 
+```mermaid
+flowchart TD
+  A[用户输入] --> B[context 投影]
+  B --> C[调用模型 streaming]
+  C --> D{tool_use?}
+  D -- 是 --> E[执行工具]
+  E --> F[tool_result 回注]
+  F --> B
+  D -- 否 --> G[turn 结束]
+  C -. prompt-too-long .-> H[compact retry]
+  H --> C
+  C -. max-output-tokens<br/>fallback-model .-> I[escalate / retry]
+  I --> C
+```
+
 ## 一、先给出总体判断
 
 如果只基于当前源码做判断，我会把 Claude Code 的 agent loop 概括成：

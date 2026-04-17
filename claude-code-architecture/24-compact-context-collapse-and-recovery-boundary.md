@@ -28,6 +28,16 @@ toc: true
 - **哪些边界被显式编码**
 - **压缩后系统如何继续保持一致性**
 
+```mermaid
+flowchart TD
+    A[getMessagesAfterCompactBoundary] --> B[applyToolResultBudget]
+    B --> C[snipCompactIfNeeded]
+    C --> D[microcompact]
+    D --> E[contextCollapse]
+    E --> F[autocompact]
+    F --> G[messagesForQuery]
+```
+
 ---
 
 ### 一、先给出总体判断

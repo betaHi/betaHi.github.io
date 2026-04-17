@@ -27,6 +27,25 @@ toc: true
 
 因此，本文会尽量把“错误长什么样”与“系统如何恢复、继续或安全终止”分开，重点放在后者。
 
+```mermaid
+stateDiagram-v2
+    [*] --> 正常推进
+    正常推进 --> prompt_too_long: 上下文溢出
+    正常推进 --> max_output_tokens: 输出截断
+    正常推进 --> streaming_fail: 流式中断
+    正常推进 --> context_collapse: 历史过大
+    正常推进 --> interrupt: 用户中断
+    prompt_too_long --> 正常推进: reactive-compact 重试
+    max_output_tokens --> 正常推进: 注入 recovery-message
+    streaming_fail --> 正常推进: fallback-model
+    context_collapse --> 正常推进: drain & retry
+    正常推进 --> success
+    max_output_tokens --> error_max_turns
+    正常推进 --> error_max_budget
+    streaming_fail --> error_during_execution
+    interrupt --> [*]
+```
+
 ## 一、先给出总体判断
 
 如果只基于当前源码做判断，我会把 Claude Code 的恢复与错误处理概括成：

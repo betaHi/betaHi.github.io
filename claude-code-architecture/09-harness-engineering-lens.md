@@ -45,6 +45,16 @@ toc: true
 
 这是这一章最可迁移的部分。如果你要研究任何一个 agent 系统——不止 Claude Code——以下七个问题是最有用的切入点。每个问题后面附上 Claude Code 里对应的源码线索，供对照。
 
+```mermaid
+flowchart LR
+    Q1["定义环境"] --> Q2["构造上下文"]
+    Q2 --> Q3["定义动作空间"]
+    Q3 --> Q4["执行恢复"]
+    Q4 --> Q5["治理接入"]
+    Q5 --> Q6["辅助复杂度"]
+    Q6 --> Q7["演进支持"]
+```
+
 ### 1. 它怎样定义运行环境？
 
 **关键线索**：`src/entrypoints/cli.tsx`、`src/main.tsx`、`src/entrypoints/init.ts`

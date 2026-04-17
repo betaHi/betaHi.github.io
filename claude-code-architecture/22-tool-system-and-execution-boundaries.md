@@ -23,6 +23,14 @@ toc: true
 - **tool system 的边界在哪里**
 - **Claude Code 为什么没有把“一切可执行能力”都混成同一种插件**
 
+```mermaid
+flowchart TD
+    A[定义层<br/>tool schema / isConcurrencySafe] --> B[权限层<br/>canUseTool 裁决]
+    B --> C[执行层<br/>runtime sandbox / streaming]
+    C --> D[结果层<br/>normalize / attach to messages]
+    D --> E[回填 assistant context]
+```
+
 ---
 
 ### 一、先给出总体判断

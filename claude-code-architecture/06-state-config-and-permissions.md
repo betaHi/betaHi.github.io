@@ -26,6 +26,19 @@ Claude Code 并不是“模型 + 工具”直接裸连，而是在中间放了�
 3. **权限不是单次判定，而是整套上下文系统**：工具是否暴露、是否可调用、是否需用户确认，都由权限体系动态决定。
 4. **trust 是一级安全边界**：工作区信任、CLAUDE.md 外部引用、mcp.json 审批都在正式执行前处理。
 
+```mermaid
+flowchart LR
+    S1["settings"] --> M["合并策略"]
+    S2["project"] --> M
+    S3["user"] --> M
+    S4["enterprise"] --> M
+    M --> C["canUseTool"]
+    C --> A["allow"]
+    C --> Q["ask"]
+    C --> D["deny"]
+    D --> L["记录 denial"]
+```
+
 ## 一、为什么状态是两层的
 
 ### 1. `src/bootstrap/state.ts`：底层运行态

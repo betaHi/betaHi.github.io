@@ -19,6 +19,18 @@ toc: true
 
 关于 memory 的结构化分层本身——durable memory、session memory、extraction——会在 [第 17 章](/claude-code-architecture/17-memory-system-and-persistence/) 完整展开。本章**只在 memory 作为「受控改进的载体」这个角度上**涉及它。
 
+```mermaid
+flowchart TD
+    A["主循环"] --> B["side-channel 触发"]
+    B --> C["三层评测"]
+    C --> C1["telemetry"]
+    C --> C2["observability"]
+    C --> C3["experimentation"]
+    C --> D["受控写回路<br/>skillImprovement / extractMemories"]
+    D --> E["user 确认"]
+    E --> F["合入"]
+```
+
 ---
 
 ## 一、先给出总体判断

@@ -23,6 +23,21 @@ toc: true
 - 不重新展开第 06 章已经覆盖的 state / config / trust / permission 总览；
 - 也不重讲第 14 章的 skills 系统本体，只在 memory 与 runtime 注入/提取发生关系时提到。
 
+```mermaid
+flowchart LR
+  subgraph M[memdir 层级]
+    U[user]
+    P[project]
+    G[managed]
+  end
+  M -->|读路径| R1[prefetch<br/>relevant memory]
+  R1 --> R2[attachment 注入]
+  R2 --> T[turn 执行]
+  T -->|写路径| W1[extractMemories 建议]
+  W1 --> W2[用户确认]
+  W2 --> M
+```
+
 ## 一、先给出总体判断
 
 如果只基于当前源码做判断，我会把 Claude Code 的 memory system 概括成：

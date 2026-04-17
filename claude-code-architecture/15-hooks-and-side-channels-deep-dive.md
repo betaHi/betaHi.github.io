@@ -18,6 +18,18 @@ toc: true
 
 这里的重点不是把 hooks 理解成“插件接口”，而是把它们放回 agent runtime 的执行流里看：它们是如何在一次 turn 的推进、收尾和旁路分析中被组织起来的。
 
+```mermaid
+flowchart TD
+  A[turn 主循环] --> B[pre-sampling<br/>同步阻塞]
+  B --> C[调用模型 / sampling]
+  C --> D[post-sampling<br/>fire-and-forget]
+  D --> E{继续 turn?}
+  E -- 是 --> A
+  E -- 否 --> F[stop hook<br/>同步收口]
+  F --> G[teammate / task-completed<br/>fire-and-forget]
+  F --> H[memory-extract / auto-dream<br/>fire-and-forget]
+```
+
 ## 一、先给出总体判断
 
 如果只基于当前源码做判断，我会把 Claude Code 的 hooks 与 side-channels 概括成：

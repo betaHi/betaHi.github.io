@@ -38,6 +38,15 @@ Claude Code 明显采用了“双接口架构”：
 - `src/tools.ts` 是 tool 注册中心
 - 两者都受到 feature flag、用户类型、运行模式、权限上下文等条件影响
 
+```mermaid
+flowchart TD
+    A["slash 命令"] --> E["全部注入"]
+    B["内建工具"] --> E
+    C["MCP 工具"] --> E
+    D["skills"] --> E
+    E --> F["模型可用工具集"]
+```
+
 ## 一、命令系统：`src/commands.ts`
 
 ### 1. 命令系统的角色

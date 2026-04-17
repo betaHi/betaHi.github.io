@@ -28,6 +28,21 @@ Claude Code 的启动架构可以概括为三层：
 - **缩短启动延迟**：简单路径不必加载整套 React/Ink 和大模块。
 - **隔离初始化职责**：把“模式选择”“产品装配”“底层环境准备”拆开。
 
+```mermaid
+flowchart LR
+    A["bin/claude"] --> B["cli.js 解包"]
+    B --> C["main() 启动"]
+    C --> D{"模式分派"}
+    D --> E["interactive"]
+    D --> F["print"]
+    D --> G["headless"]
+    D --> H["SDK"]
+    E --> I["QueryEngine 构造"]
+    F --> I
+    G --> I
+    H --> I
+```
+
 ## 一、轻量入口：`src/entrypoints/cli.tsx`
 
 ### 1. 它为什么存在

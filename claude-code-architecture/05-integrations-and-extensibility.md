@@ -30,6 +30,16 @@ Claude Code 的扩展与集成层非常厚，至少由五类机制组成：
 
 这五类机制组合后，Claude Code 才真正从“本地终端助手”变成“可组合 agent 平台”。
 
+```mermaid
+flowchart LR
+    A["MCP clients"] --> M["挂载点"]
+    B["hooks"] --> M
+    C["plugins"] --> M
+    D["subagents"] --> M
+    E["custom skills"] --> M
+    M --> R["runtime"]
+```
+
 ## 一、MCP：外部能力接入总线
 
 ### 1. `src/services/mcp/client.ts` 的角色

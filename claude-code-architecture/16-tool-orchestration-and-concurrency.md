@@ -24,6 +24,19 @@ toc: true
 
 因此，本文会尽量把“代码结构在做什么”和“这些结构实际提供了什么语义保证”分开写清楚。
 
+```mermaid
+flowchart TD
+  A[tool_use blocks] --> B[partitionToolCalls]
+  B --> C[并发安全组]
+  B --> D[非并发安全 串行]
+  C --> E[StreamingToolExecutor<br/>queued → executing → completed → yielded]
+  D --> E
+  E --> F{Bash error?}
+  F -- 是 --> G[取消 sibling 任务]
+  F -- 否 --> H[tool_result 汇总]
+  G --> H
+```
+
 ## 一、先给出总体判断
 
 如果只基于当前源码做判断，我会把 Claude Code 的工具编排概括成：
