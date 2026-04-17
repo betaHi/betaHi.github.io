@@ -194,7 +194,7 @@ Claude Code 并不是“模型 + 工具”直接裸连，而是在中间放了�
 
 同样地，CLAUDE.md 外部 include 也要在 setup 流程中提醒/批准。
 
-这进一步说明 Claude Code 非常重视“配置文件可能带来外部影响”的问题。
+也就是说 Claude Code 非常重视“配置文件可能带来外部影响”的问题。
 
 ## 六、状态、权限、配置如何汇合到 runtime
 

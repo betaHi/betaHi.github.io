@@ -510,35 +510,6 @@ Claude Code 没有简单地“跳过一切 hook”，而是把失败路径单独
 - `17` 讲长期上下文系统如何运作
 - 本章讲 runtime 遇错时如何恢复、重试、或安全终止
 
-## 十一、Harness 视角
-
-从 harness engineering 的角度看，这一章最值得注意的，不是 Claude Code “会自动恢复”，而是它把恢复能力明确拆成多层。
-
-一个较弱的 harness，通常只有两种行为：
-
-- 出错就重试
-- 还不行就报错
-
-而 Claude Code 当前源码体现的是更厚的一层：
-
-- API retry 和 turn recovery 分层
-- 可恢复错误先 withheld
-- 不同错误走不同恢复器
-- 恢复通过显式 transition 推进
-- 失败终点与正常 stop epilogue 分开
-- message history / tool_result pairing / thinking signature 一致性被当成恢复系统的一部分
-
-这说明对 agent runtime 来说，错误处理不是“外围容错”，而是 runtime consistency 与 continuation control 的组成部分。
-
-也正因为如此，这套机制比“包一层 exponential backoff”厚得多。它不仅要决定何时 retry，还要决定：
-
-- retry 前要不要清理 attempt 状态
-- 某个 error 是不是值得延迟暴露
-- 当前失败终点还能不能再跑 stop hooks
-- 某个恢复是否已经尝试过，是否必须防环
-
-## 十二、工程化启发
-
 ## 1. retry、fallback、recovery 应该分层，不要混成一个 catch
 
 Claude Code 最值得借鉴的一点，是把：
@@ -554,7 +525,7 @@ Claude Code 最值得借鉴的一点，是把：
 
 ## 2. recoverable error 最好先 withheld，再决定是否 surface
 
-如果错误一出现就被外部视为最终失败，那后续 recovery loop 很容易变成“系统还在跑，但调用方已经退出”。
+如果错误一出现就被外部视为最终失败，那后续 recovery loop 容易出现“系统还在跑，但调用方已经退出”的状态。
 
 Claude Code 的做法说明：
 
@@ -584,7 +555,7 @@ Claude Code 把 stop hooks 和 stop failure hooks 分开，是一个非常成熟
 
 - 正常终点可以评估 stop hooks
 - 失败终点只能做 failure-oriented side-channel
-- 二者如果混起来，就很容易把 failure path 重新接回 continuation path
+- 二者如果混起来，容易把 failure path 重新接回 continuation path
 
 ## 5. 防止恢复死循环必须依赖显式状态，而不是隐式猜测
 
@@ -601,7 +572,7 @@ Claude Code 把 stop hooks 和 stop failure hooks 分开，是一个非常成熟
 
 > Claude Code 的恢复与错误处理不是单一 retry 逻辑，而是一套分层的 runtime recovery system：API 层处理连接、认证、限流与 fallback；query loop 层处理 withheld error、上下文恢复与 continuation；failure epilogue 则把错误终点和正常 stop 终点区分开来，从而在尽量恢复任务推进的同时，保护消息一致性并避免恢复死循环。
 
-从源码可以稳妥得出的结论包括：
+从源码可以得出的倾向性结论包括：
 
 - `withRetry.ts` 和 `query.ts` 分别承担 API-layer retry 与 turn-layer recovery，两者不是一回事。
 - prompt-too-long、media-size error、max_output_tokens 等 recoverable error 会先 withheld，再按各自语义尝试恢复。

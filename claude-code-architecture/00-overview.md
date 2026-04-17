@@ -341,33 +341,6 @@ Claude Code = 长期协作型 agent runtime
 
 - **让你以最低成本进入这整套研究**
 
-## 九、Harness 视角
-
-从 harness engineering 的角度看，本章最重要的工作不是提供某个技术结论，而是先建立阅读时的结构纪律。
-
-Claude Code 最容易被误读的地方，是把它看成：
-
-- 一个终端聊天程序
-- 一个工具调用器
-- 或一个“CLI + prompt”的组合
-
-但只要你从一开始就把它看成 runtime，就更容易理解为什么后面会出现：
-
-- compact boundary
-- relevant memory prefetch
-- stop hooks / stop failure hooks
-- SDK protocol projection
-- background tasks / cron / subagents
-- permissions / governance / managed settings
-
-也就是说，本章对应的不是某条源码链路，而是：
-
-- **读整套仓库时的主心智模型入口**
-
-## 十、工程化启发
-
-这一章最值得保留的工程经验是：
-
 ## 1. 做架构研究时，先分导航层，再分技术层
 
 如果没有总览、总图、索引、术语、综合这几层，后面章节越多，读者越难进入。

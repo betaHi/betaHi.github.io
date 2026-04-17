@@ -435,7 +435,7 @@ flowchart TD
 
 这类设计非常关键，因为 Claude Code 是在代码仓库里运行的工具；如果 project-local config 可以轻易提升危险权限，治理边界会很脆弱。
 
-所以从源码能稳妥得出的判断是：
+所以从源码能得出的倾向性判断是：
 
 - **并不是所有 settings source 在安全语义上等价**
 
@@ -551,10 +551,6 @@ settings source 之间就已经有信任差异：
 - `20` 讲上下文装配
 - 本章讲 runtime 治理底盘
 
-## 十二、Harness 视角
-
-从 harness engineering 的角度看，这部分设计有几个特别值得学的点。
-
 ## 1. 不要把 config、state、policy、UI store 混成一个系统
 
 Claude Code 当前源码最清楚地说明：
@@ -603,8 +599,6 @@ Claude Code 把：
 
 这是很实用、也很诚实的工程态度。
 
-## 十三、工程化启发
-
 ## 1. 先按生命周期拆层
 
 最先要区分的不是技术栈，而是生命周期：
@@ -644,7 +638,7 @@ Claude Code 的 settings source 和 policy source 说明，真正成熟的 agent
 
 > Claude Code 的配置、状态与治理系统不是一个统一大仓库，而是一组按持久性、来源可信度、执行职责和交互层次分开的控制面：`config.ts` 管 durable record，`settings.ts` 管多来源配置求值，`bootstrap/state.ts` 管会话级 runtime substrate，`AppState.tsx` 管 UI 投影，而 `permissions.ts` / `useCanUseTool.tsx` 则把这些输入落成真正的运行时治理判断。
 
-从源码能稳妥得出的结论包括：
+从源码能得出的倾向性结论包括：
 
 - Claude Code 明确区分了 durable config、merged settings、session runtime state、UI state 与 permission execution context；
 - policy / managed settings 在安全语义上高于普通项目局部配置，说明治理层不是普通配置层的附属品；

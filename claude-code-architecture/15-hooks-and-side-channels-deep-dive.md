@@ -272,7 +272,7 @@ prefetch 最容易被误解成“后台功能”。实际上它和主路径耦�
 
 `postSamplingHooks.ts` 中对每个 hook 都是 try/catch，失败只 `logError`。
 
-因此从源码能稳妥得出的结论是：
+因此从源码能得出的倾向性结论是：
 
 - post-sampling hook 被视为可失败的辅助分析
 - 不是必须成功的主任务步骤
@@ -338,10 +338,6 @@ prefetch 最容易被误解成“后台功能”。实际上它和主路径耦�
 
 因此这里不会重复 skills 的完整系统分析。
 
-## 七、Harness 视角
-
-从 harness engineering 的角度看，这一组设计有几个很清楚的信号。
-
 ## 1. 主循环与旁路能力被刻意分层
 
 Claude Code 没有把所有增强能力都塞进一次模型调用里，而是把它们分散到：
@@ -384,8 +380,6 @@ skill improvement 只针对 project skill 文件；memory extraction 也不是�
 
 - 先把 side-channel 用在边界清楚、可解释、可回滚的对象上
 - 而不是把它升级成对核心 runtime 的泛化自改写能力
-
-## 八、工程化启发
 
 ## 1. 不要把 hooks 只理解成插件 API
 

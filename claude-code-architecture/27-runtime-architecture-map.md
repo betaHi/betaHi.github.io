@@ -599,10 +599,6 @@ Governance Plane 决定：
 
 ---
 
-## 十三、Harness 视角
-
-从 harness engineering 的角度看，这张总图最值得学的地方有四个。
-
 ## 1. 把主状态机和其他 plane 分开
 主循环必须清楚，但又不能承担全部系统责任。Claude Code 明显在努力控制这一点。
 
@@ -621,8 +617,6 @@ settings、permissions、trust、policy 被当作一等架构对象，而不是�
 prefetch、post-sampling、stop-hook、extraction 这些能力不是临时外挂，而是被看作正式 runtime 架构的一部分。
 
 ---
-
-## 十四、工程化启发
 
 ## 1. 做 agent runtime 时，先画 plane，再谈模块
 与其一开始按文件组织，不如先问：

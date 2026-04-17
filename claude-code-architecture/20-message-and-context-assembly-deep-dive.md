@@ -341,7 +341,7 @@ skill discovery prefetch 与 memory prefetch 非常相似：
 
 源码位置：`src/query.ts:323-335`, `src/query.ts:1617-1628`
 
-这进一步说明 Claude Code 的上下文扩展方式不是只有一种 attachment 来源，而是已经把：
+也就是说 Claude Code 的上下文扩展方式不是只有一种 attachment 来源，而是已经把：
 
 - memory
 - skills
@@ -373,13 +373,13 @@ skill discovery prefetch 与 memory prefetch 非常相似：
 - orphaned thinking / trailing thinking / whitespace assistant 清理
 - 最终图像有效性校验
 
-这已经明显不是“格式整理”，而是：
+这不是“格式整理”，而是：
 
 - **把内部 runtime message representation 翻译成 API-compatible message representation**
 
 ## 2. internal message model 与 API message model 是分离的
 
-从 `normalizeMessagesForAPI(...)` 的存在及其复杂度，可以稳定推出一个架构判断：
+从 `normalizeMessagesForAPI(...)` 的存在及其复杂度，指向一个架构判断：
 
 - Claude Code 维护的内部消息模型，比 API 所要求的消息模型更丰富
 
@@ -462,7 +462,7 @@ skill discovery prefetch 与 memory prefetch 非常相似：
 
 源码位置：`src/utils/messages/systemInit.ts:41-95`, `src/QueryEngine.ts:1135-1155`
 
-这再次说明 Claude Code 至少维护了三种不同的消息表示：
+也就是说 Claude Code 至少维护了三种不同的消息表示：
 
 1. **内部 runtime messages**
 2. **发给 API 的 normalized messages**
@@ -567,10 +567,6 @@ Claude Code 的可取之处就在于它没有把这三者混成一个数组一�
 
 - recovery 怎样影响可发送上下文的形成
 
-## 十、Harness 视角
-
-从 harness engineering 的角度看，这一套设计有几个特别值得学的点。
-
 ## 1. 内部消息模型与 API 消息模型最好分开
 
 Claude Code 最值得借鉴的一点是，它没有强迫内部状态直接长成 API 需要的样子。
@@ -616,8 +612,6 @@ Claude Code 没有把 memory、queued commands、skill discovery 全都粗暴塞
 应该明确分层。
 
 否则一旦 UI、SDK、session resume、transcript persistence 开始演化，系统就会很快陷入概念混乱。
-
-## 十一、工程化启发
 
 ## 1. 上下文装配要按阶段拆开
 
@@ -668,7 +662,7 @@ message assembly 的真正难点从来不只是“怎么拼 prompt”，而是�
 
 > Claude Code 的消息与上下文装配不是单次 prompt 拼接，而是一条由 `QueryEngine` 入口装配、query loop 历史投影、attachment 增量补充、`normalizeMessagesForAPI(...)` 边界转换、以及 SDK 外部映射共同组成的 staged runtime pipeline。
 
-从源码能稳妥得出的结论包括：
+从源码能得出的倾向性结论包括：
 
 - `QueryEngine` 负责 turn 入口的 prompt/context 基础装配，而不是最终 API payload 一次性构造；
 - `query()` 会把内部历史不断投影成 compact-aware、budget-aware、recovery-aware 的当前可发送视图；

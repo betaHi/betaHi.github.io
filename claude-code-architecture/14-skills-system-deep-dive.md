@@ -219,7 +219,7 @@ skill-name/
 
 这个字段很关键，因为它说明某些 skill 可以要求在 forked context 下执行，而不是内联进当前主线程。
 
-这已经明显超出了“prompt 模板”的范围。
+这超出了“prompt 模板”的范围。
 
 ## 5. `agent`
 
@@ -456,54 +456,6 @@ hook 会把：
 - `skillImprovement` 为什么更像受控 skill-level rewrite，而不是泛化的系统自改写
 
 因此这章不是在重复 `05` 的扩展层总览，而是在把 skills 作为一个独立子系统单独拆开。
-
-## 十、对 harness engineering 的启发
-
-## 1. 很多系统缺的不是更多 tool，而是 skill 这一层
-
-如果系统只有：
-
-- 用户输入
-- 模型
-- tools
-
-那大量可复用工作流会被迫写成：
-
-- 巨 prompt
-- 手册文档
-- 硬编码命令
-- 或过重的 plugin
-
-skill 提供了一个中间层，让工作流可复用、可分发、可带元数据。
-
-## 2. 工作流层适合用内容驱动，而不是一开始就全代码化
-
-Claude Code 选择 markdown + frontmatter，是很强的产品化信号：
-
-- 好编辑
-- 好分发
-- 好审阅
-- 不要求每个流程都写 TS
-
-这让 skill 的扩展门槛比 plugin/tool 更低。
-
-## 3. 但工作流层仍需要运行时边界
-
-从 `allowed-tools`、`context`、`hooks`、MCP skill 禁止 inline shell 可以看出：
-
-- workflow abstraction 不能完全“只有文本”
-- 一旦进入真实产品，就必须带权限、来源、执行上下文边界
-
-## 4. 自改进最好先从 skills 这种窄写入面开始
-
-`skillImprovement` 的价值不在于“系统能自己改自己”，而在于它展示了一条更现实的路径：
-
-- 先挑边界清楚的对象
-- 从用户纠正中抽取更新建议
-- gated rollout
-- 小范围自动应用
-
-这比直接让 agent 改核心 runtime 要健康得多。
 
 ## 本章小结
 

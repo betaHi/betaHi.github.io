@@ -37,7 +37,7 @@ toc: true
 - prompt-too-long / max_output_tokens / fallback / interrupt 如何恢复或终止
 - turn 结束后哪些 side-channel 工作异步触发
 
-这已经明显超出了普通 prompt wrapper 的范畴。
+这超出了普通 prompt wrapper 的范畴。
 
 ## 二、loop 的入口与边界
 
@@ -420,55 +420,6 @@ loop 在工具结束后还会：
 - 更明确地把 compact / fallback / max_output_tokens 恢复看成 transition，而不是错误收尾
 
 因此这章不是对 `03` 的重复，而是把 `03` 中相对压缩的 runtime 主路径再展开一层。
-
-## 九、对 harness engineering 的启发
-
-## 1. loop 应该是 runtime 核心，而不是薄胶水
-
-Claude Code 最值得学的地方之一，是它把：
-
-- tool execution
-- compact
-- recovery
-- budget
-- hooks
-- attachment injection
-
-都放进了主循环，而不是事后补丁。
-
-这使系统更容易保持一致性。
-
-## 2. 会话 owner 和 turn loop 分层很重要
-
-`QueryEngine` 与 `query()` 的拆分，让：
-
-- session state
-- current turn transition
-- UI/SDK event stream
-- transcript persistence
-
-可以有清楚边界。
-
-这比一个巨型 `runAgent()` 函数更适合长期演化。
-
-## 3. side-channel 工作最好从主 loop 分流
-
-memory extraction、prompt suggestion、skill improvement、task summary 这些能力，并没有全部塞进“模型主 prompt”里，而是通过：
-
-- prefetch
-- post-sampling hooks
-- stop hooks
-- forked agents
-
-挂到旁路。
-
-这是一种很成熟的 harness 手法：主循环负责推进任务，副通道负责提炼、评测和增强。
-
-## 4. 失败恢复要成为默认路径
-
-在 Claude Code 里，prompt too long、fallback、max_output_tokens、tool cancellation、interrupt 都不是罕见异常，而是显式设计过的路径。
-
-这对 agent runtime 特别重要，因为真正的复杂度往往不在“成功一次”，而在“出问题后能否稳定继续或稳定退出”。
 
 ## 本章小结
 

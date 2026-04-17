@@ -387,10 +387,6 @@ memory 和会话的关系大致是：
 
 因此本章中的 skills 只作为 runtime 相关上下文的一部分出现，而不是研究对象本身。
 
-## 九、Harness 视角
-
-从 harness engineering 的角度看，Claude Code 的 memory system 有几个特别值得学的地方。
-
 ## 1. memory 不应只有一种形态
 
 当前源码最清楚地说明了一点：memory 至少要分成：
@@ -432,11 +428,9 @@ relevant memory prefetch 的 collect-if-ready 语义说明：
 
 这是一种更现实、也更容易做好的 memory 产品路线。
 
-## 十、工程化启发
-
 ## 1. memory engineering 的第一步是先分层
 
-如果 durable memory、summary memory、retrieval results、UI state 不分层，后面几乎一定会出现：
+如果 durable memory、summary memory、retrieval results、UI state 不分层，后面多半会出现：
 
 - 注入重复
 - 写回失控
@@ -445,7 +439,7 @@ relevant memory prefetch 的 collect-if-ready 语义说明：
 
 Claude Code 当前最可取的地方，就是至少在架构上把这些层拆开了。
 
-## 2. 写回面一定要做窄
+## 2. 写回面倾向于做窄
 
 长期 memory 最危险的不是“记不住”，而是“乱记”。Claude Code 通过：
 
@@ -477,7 +471,7 @@ typed memory 的四类已经隐含了一个很好的产品判断：长期记忆�
 
 > Claude Code 的 memory system 不是单一摘要功能，而是一套由 durable memory、runtime retrieval、prompt/attachment 注入、以及 stop-hook 写回共同组成的长期上下文基础设施。
 
-从源码能稳妥得出的结论包括：
+从源码能得出的倾向性结论包括：
 
 - durable memory 采用 file-based、typed、indexed 的结构，而不是随意聊天缓存；
 - memory 既会在 query 前作为 prompt 片段进入上下文，也会在 turn 内以 relevant memory attachments 的形式动态注入；
