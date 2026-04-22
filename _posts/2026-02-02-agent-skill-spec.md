@@ -5,7 +5,10 @@ categories: [Tech, AI Engineering]
 tags: [agent-skill, skill-spec, claude, anthropic, skills-ref, ai-engineering]
 ---
 
-之前已经写过[关于 Agent Skill 的文章]({% post_url 2025-11-30-from-prompt-to-skills %})，主要是从「能做什么」和「为什么有用」的角度来了解。
+之前已经写过两篇关于 Agent Skill 的文章：
+
+- [从 Prompt 到 Skills：Claude 和 LangChain 带来的 AI 新范式]({% post_url 2025-11-30-from-prompt-to-skills %})：主要从「能做什么」和「为什么有用」的角度来了解 Skill
+- [Skills 与 Prompts、MCP 以及 Subagents 之间的对比说明]({% post_url 2025-12-26-skills-vs-prompts-mcp-subagents %})：把 Skill 放到 Claude 技术栈里，和 Prompts / MCP / Subagents 做对比
 
 在开始动手写自己的 Agent Skill 之前，我们有必要先弄清楚它的基本规范，包括：
 
