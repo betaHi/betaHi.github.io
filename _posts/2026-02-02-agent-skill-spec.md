@@ -5,7 +5,7 @@ categories: [Tech, AI Engineering]
 tags: [agent-skill, skill-spec, claude, anthropic, skills-ref, ai-engineering]
 ---
 
-之前已经写过关于 Agent Skill 的文章，主要是从「能做什么」和「为什么有用」的角度来了解。
+之前已经写过[关于 Agent Skill 的文章]({% post_url 2025-11-30-from-prompt-to-skills %})，主要是从「能做什么」和「为什么有用」的角度来了解。
 
 在开始动手写自己的 Agent Skill 之前，我们有必要先弄清楚它的基本规范，包括：
 
