@@ -216,7 +216,7 @@ LLM 变成了一个接近"纯函数"的角色。输入是问题和上下文，�
 
 复制到 [mermaid.live](https://mermaid.live) 可直接生成图片：
 
-```mermaid
+```text
 flowchart TD
     subgraph 系统外层["系统外层（确定性）"]
         A[选择一个任务] --> B[注入预分析 + 约束]
