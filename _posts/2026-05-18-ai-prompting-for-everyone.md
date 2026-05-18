@@ -10,7 +10,7 @@ tags: [prompt-engineering, deeplearning-ai, andrew-ng, sycophancy, deep-research
 
 ## AI 的知识来自哪里
 
-![](https://files.mdnice.com/user/175949/760cfa83-8117-49c7-8b9f-90a94f2450d7.jpg)
+![AI 知识来源](/assets/img/2026-05-18_1.jpg)
 
 
 课程前几节把模型回答时的知识来源拆成了三种：
@@ -26,7 +26,7 @@ tags: [prompt-engineering, deeplearning-ai, andrew-ng, sycophancy, deep-research
 
 ## 上下文（Context）
 
-![](https://files.mdnice.com/user/175949/7c1b010e-6889-470c-abaa-267aa3efc077.png)
+![上下文构成](/assets/img/2026-05-18_2.png)
 
 
 课程把上下文拆为四部分：
@@ -46,7 +46,7 @@ tags: [prompt-engineering, deeplearning-ai, andrew-ng, sycophancy, deep-research
 
 课程把这种现象叫 sycophancy，指模型默认会顺着提问者的口风走。比如你把同一份方案丢给它，问「我这个方案不错吧？」，它大概率会夸一通；换成「这个方案是不是有点问题？」，它又会顺着挑毛病。
 
-![](https://files.mdnice.com/user/175949/26647a35-f3c6-4024-a24f-f32e983987ff.png)
+![Sycophancy 示例](/assets/img/2026-05-18_3.png)
 
 
 课程引用了一组数据：《华盛顿邮报》分析 ChatGPT 对话后发现，模型表达同意的次数大约是表达反对的 10 倍。课程把这种行为追溯到训练机制本身——人类反馈阶段，附和用户的回答更容易拿到正向评分，模型因此学到「默认讨好提问者」。这不是某一家模型的 bug，各家都在缓解，但目前未解。
@@ -98,7 +98,7 @@ rubric 越具体，反馈越能用。
 
 ## 选择 AI 能力的对照表
 
-![](https://files.mdnice.com/user/175949/f4fc7da9-aa5b-4c58-8fb9-c0bb467dc53c.jpg)
+![AI 能力选择对照](/assets/img/2026-05-18_4.jpg)
 
 
 | 问题类型 | 适用方式 |
