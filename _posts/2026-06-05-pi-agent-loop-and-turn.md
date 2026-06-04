@@ -1,6 +1,6 @@
 ---
 title: Pi 系列 02｜Agent loop 与 turn：一次 prompt 为什么会拆成 4 趟
-date: 2026-06-05 17:00:00 +0800
+date: 2026-06-05 00:00:00 +0800
 categories: [Tech, Agent]
 tags: [pi, agent-harness, agent-loop, turn, tool-calling, context, llm]
 ---
