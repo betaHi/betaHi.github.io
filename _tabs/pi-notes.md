@@ -21,3 +21,4 @@ permalink: /pi-notes/
 | # | 文章 | 核心问题 |
 |---|---|---|
 | 01 | [用最小例子看 agent runtime 的事件流](/posts/pi-step-zero-event-stream/) | agent loop 长什么样？turn 是什么？ |
+| 02 | [Agent loop 与 turn：一次 prompt 为什么会拆成 4 趟](/posts/pi-agent-loop-and-turn/) | 一次 prompt 为什么会拆成多个 turn？ |
