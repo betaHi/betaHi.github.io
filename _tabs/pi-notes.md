@@ -23,3 +23,4 @@ permalink: /pi-notes/
 | 01 | [用最小例子看 agent runtime 的事件流](/posts/pi-step-zero-event-stream/) | agent loop 长什么样？turn 是什么？ |
 | 02 | [Agent loop 与 turn：一次 prompt 为什么会拆成 4 趟](/posts/pi-agent-loop-and-turn/) | 一次 prompt 为什么会拆成多个 turn？ |
 | 03 | [Provider 抽象与统一事件协议](/posts/pi-provider-abstraction/) | 不同厂商的流格式怎么统一成一套事件？ |
+| 04 | [Tool 系统(上)：一个 toolCall 的一生](/posts/pi-tool-system/) | 模型"调用"工具时，到底是谁在执行？ |
