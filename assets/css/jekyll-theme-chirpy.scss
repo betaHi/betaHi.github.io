@@ -40,6 +40,16 @@ html:not([data-mode]) {
 
   /* —— 语法高亮：GitHub Dark Dimmed token 配色 —— */
   .highlight {
+    /* 直接覆盖 .highlight 自身的背景与基础文字色。
+       Chirpy 在 `html:not([data-mode]) .highlight`（特异度 0,2,1）上写死了
+       background:#f6f8fa; color:#24292f，仅改 CSS 变量（特异度 0,1,0）压不过它，
+       必须在此用同等特异度（含 .w）直接覆盖，否则代码块背景仍是浅色。 */
+    &,
+    .w {
+      background-color: #22272e;
+      color: #adbac7;
+    }
+
     pre,
     code {
       color: #adbac7; /* 基础 / 未着色文字（标识符、标点等） */
