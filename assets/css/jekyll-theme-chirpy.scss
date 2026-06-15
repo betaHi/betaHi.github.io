@@ -1,0 +1,87 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* ============================================================
+   代码块主题：GitHub Dark Dimmed
+   浅色 / 深色模式下，代码块统一显示为深色卡片。
+   仅作用于代码块（.highlight），不影响正文行内代码。
+   ============================================================ */
+
+html[data-mode],
+html:not([data-mode]) {
+  /* —— 代码块容器（变量驱动：背景 / 行号 / 标题栏） —— */
+  --highlight-bg-color: #22272e;     /* 代码主体背景 */
+  --highlight-lineno-color: #545d68; /* 行号 */
+  --language-border-color: #2d333b;  /* 边框环 */
+  --code-header-text-color: #909dab; /* 语言标签文字 */
+  --code-header-muted-color: #545d68;/* 左上三个圆点 */
+  --code-header-icon-color: #768390; /* 复制 / 语言图标 */
+  --clipboard-checked-color: #57ab5a;/* 复制成功的对勾 */
+
+  /* —— 卡片化：两段式标题栏 + 轻投影 + 裁剪圆角 —— */
+  div[class^='language-'],
+  figure.highlight {
+    overflow: hidden;
+    box-shadow:
+      #2d333b 0 0 0 1px,
+      0 6px 18px rgb(1 4 9 / 18%);
+  }
+
+  .code-header {
+    background-color: #2d333b; /* 标题栏比主体略浅，形成层次 */
+  }
+
+  /* —— 语法高亮：GitHub Dark Dimmed token 配色 —— */
+  .highlight {
+    pre,
+    code {
+      color: #adbac7; /* 基础 / 未着色文字（标识符、标点等） */
+    }
+
+    /* 注释 */
+    .c, .ch, .cd, .cm, .cp, .cpf, .c1, .cs {
+      color: #768390;
+      font-style: italic;
+    }
+    .gl, .gt, .gp { color: #768390; }
+
+    /* 关键字 / 运算符 */
+    .k, .kd, .kn, .kp, .kr, .kt, .kv, .o, .ow { color: #f47067; }
+
+    /* 常量 / 数字 / 内置变量 */
+    .kc, .l, .ld, .m, .mb, .mf, .mh, .mi, .il, .mo, .mx,
+    .bp, .ne, .py, .nv, .vc, .vg, .vi, .vm { color: #6cb6ff; }
+    .gh, .gu { color: #6cb6ff; font-weight: bold; }
+
+    /* 字符串 / 正则 */
+    .s, .sa, .sc, .dl, .sd, .s2, .se, .sh, .sx, .s1, .ss, .sb, .sr {
+      color: #96d0ff;
+    }
+
+    /* 内置类型 / 类名 / 命名空间 */
+    .nb, .nc, .no, .nn { color: #f69d50; }
+
+    /* 函数 / 装饰器 */
+    .nf, .fm, .nd { color: #dcbdfb; }
+
+    /* 标签 / 属性名 */
+    .nt, .na { color: #8ddb8c; }
+
+    /* 杂项 */
+    .ni, .si { color: #adbac7; }
+    .gr, .err { color: #f47067; background-color: transparent; }
+    .ge { font-style: italic; }
+    .gs { font-weight: bold; }
+
+    /* diff 行高亮 */
+    .gi { color: #8ddb8c; background-color: rgb(70 149 74 / 15%); }
+    .gd { color: #f47067; background-color: rgb(229 83 75 / 15%); }
+  }
+}
