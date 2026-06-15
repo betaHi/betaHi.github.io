@@ -25,3 +25,4 @@ permalink: /pi-notes/
 | 03 | [Provider 抽象与统一事件协议](/posts/pi-provider-abstraction/) | 不同厂商的流格式怎么统一成一套事件？ |
 | 04 | [Tool 系统(上)：一个 toolCall 的一生](/posts/pi-tool-system/) | 模型"调用"工具时，到底是谁在执行？ |
 | 05 | [Tool 系统(下)：工具从哪来、怎么暴露，以及 extension 的角色](/posts/pi-tool-system-2/) | 工具怎么进系统、怎么暴露给模型、怎么控制？ |
+| 06 | [实战：给应用加一个 tool（customTools 与 extension 两种方式）](/posts/pi-add-tool/) | 怎么给 pi 应用加自己的工具？两种方式怎么选？ |
