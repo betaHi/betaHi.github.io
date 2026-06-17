@@ -556,11 +556,11 @@ In practice, you can first run `/deep-research` through once to build intuition,
 
 ## References
 
-- Release announcement: https://claude.com/blog/introducing-dynamic-workflows-in-claude-code
-- Workflow docs (overview / triggering / runtime mechanics): https://code.claude.com/docs/en/workflows
-- Creating custom subagents: https://code.claude.com/docs/en/sub-agents
-- "Building effective agents": https://www.anthropic.com/engineering/building-effective-agents
-- "How we built our multi-agent research system": https://www.anthropic.com/engineering/multi-agent-research-system
+- [Release announcement](https://claude.com/blog/introducing-dynamic-workflows-in-claude-code)
+- [Workflow docs (overview / triggering / runtime mechanics)](https://code.claude.com/docs/en/workflows)
+- [Creating custom subagents](https://code.claude.com/docs/en/sub-agents)
+- ["Building effective agents"](https://www.anthropic.com/engineering/building-effective-agents)
+- ["How we built our multi-agent research system"](https://www.anthropic.com/engineering/multi-agent-research-system)
 
 
 **About the special source "the tool spec"**: This article's function signatures (Section 3.6) and the verbatim text of the seven quality patterns (Section 4.1) come from the spec that ships with the Claude Code workflow tool—that is, the model-facing instructions attached to the tool when it is handed to the model, which are neither implementation source code nor public documentation.

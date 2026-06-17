@@ -559,11 +559,11 @@ ultracode: 审计 src/routes/ 下每个 API 端点有没有漏掉鉴权检查
 
 ## 参考文章
 
-- 发布公告：https://claude.com/blog/introducing-dynamic-workflows-in-claude-code
-- 工作流文档（总览 / 触发 / 运行机制）：https://code.claude.com/docs/en/workflows
-- 创建自定义子智能体：https://code.claude.com/docs/en/sub-agents
-- 《Building effective agents》：https://www.anthropic.com/engineering/building-effective-agents
-- 《How we built our multi-agent research system》：https://www.anthropic.com/engineering/multi-agent-research-system
+- [发布公告](https://claude.com/blog/introducing-dynamic-workflows-in-claude-code)
+- [工作流文档（总览 / 触发 / 运行机制）](https://code.claude.com/docs/en/workflows)
+- [创建自定义子智能体](https://code.claude.com/docs/en/sub-agents)
+- [《Building effective agents》](https://www.anthropic.com/engineering/building-effective-agents)
+- [《How we built our multi-agent research system》](https://www.anthropic.com/engineering/multi-agent-research-system)
 
 
 **关于「工具规格」这个特殊来源**：本文的函数签名（3.6 节）和七种质量模式逐字原文（4.1 节），出自 Claude Code 工作流工具自带的规格说明——也就是工具交给模型时附带的、给模型看的说明书（model-facing instructions），既不是实现源码，也不是公开文档。
