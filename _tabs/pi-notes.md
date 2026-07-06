@@ -27,3 +27,4 @@ permalink: /pi-notes/
 | 05 | [Tool 系统(下)：工具从哪来、怎么暴露，以及 extension 的角色](/posts/pi-tool-system-2/) | 工具怎么进系统、怎么暴露给模型、怎么控制？ |
 | 06 | [实战：给应用加一个 tool（customTools 与 extension 两种方式）](/posts/pi-add-tool/) | 怎么给 pi 应用加自己的工具？两种方式怎么选？ |
 | 07 | [Session 系统：对话怎么存、恢复、分支](/posts/pi-session-system/) | 对话怎么存？为什么是 append-only 树而不是数组？ |
+| 08 | [Context 构建：发给模型的输入怎么拼出来](/posts/pi-context-construction/) | 发给模型的输入怎么拼？为什么不只是 messages？ |
