@@ -28,3 +28,6 @@ assets/js/dist
 .worktrees/
 
 .agentguard/
+
+# macOS
+.DS_Store
